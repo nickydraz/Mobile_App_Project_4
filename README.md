@@ -35,3 +35,16 @@ Background Music on Loop (may use sound manager with small files or media player
 You must calculate and display a score based on the statistics captured during play (weights are up to you, but must be logical)
 My Jet Game and Attack of the Mooninites apk files are on the K drive to play to get an idea of gameplay
 You will be graded on how well the game performs and how enjoyable it is!
+
+
+<h2>Camel Sprite Coordinates</h2>
+- Sprite 1 
+  -(0, 183) (80, 183)
+  -(0, 237) (80, 237)
+  -
+- Sprite 2
+  -(80, 183) (160, 183) 
+  -(80, 237) (160, 237)
+- Sprite 3
+  -(160, 183) (241, 183)
+  -(160, 237) (241, 237)
