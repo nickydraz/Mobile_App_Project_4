@@ -73,7 +73,7 @@ public class World implements View.OnTouchListener {
     }
     public void draw(Canvas canvas){
         if(canvas!=null){
-            canvas.drawColor(Color.parseColor("#33B5E5"));
+            canvas.drawColor(Color.parseColor("#002C4C"));
             for(GameObject obj : objects){
                 obj.draw(canvas);
             }
