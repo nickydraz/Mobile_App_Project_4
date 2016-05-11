@@ -48,3 +48,21 @@ You will need to design a game with the following:
 - Sprite 3
   -(160, 183) (241, 183)
   -(160, 237) (241, 237)
+
+<h2>Snake Green</h2>
+- Stationary Sprite
+  - (0, 0) (57, 0)
+  - (0, 53) (57, 53)
+- Attack Sprite
+  - (156, 75) (230, 75)
+  - (156, 132) (230, 132)
+
+<h2>Snake Blue</h2>
+- Stationary Sprite
+  - (0, 81) (54, 82)
+  - (0, 132) (54, 132)
+- Attack Sprite
+  - (625, 243) (702, 243)
+  - (625, 306) (702, 306)
+
+
