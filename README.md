@@ -47,19 +47,23 @@ You will need to design a game with the following:
   - (160, 237) (241, 237)
 
 <h2>Snake Green</h2>
-- Stationary Sprite (old)
-  - (0, 0) (57, 0)
-  - (0, 53) (57, 53)
-- Attack Sprite (old)
-  - (156, 75) (230, 75)
-  - (156, 132) (230, 132)
+- Stationary Sprite
+  - (0, 70) (56, 70)
+  - (0, 126) (56, 126)
+- Attack Sprite
+  - (66, 70) (142, 70)
+  - (66, 126) (142, 126)
 
 <h2>Snake Blue</h2>
-- Stationary Sprite (old)
-  - (0, 81) (54, 82)
-  - (0, 132) (54, 132)
-- Attack Sprite (old)
-  - (625, 243) (702, 243)
-  - (625, 306) (702, 306)
+- Attack Sprite
+  - (144, 70) (225, 70)
+  - (144, 126) (225, 126)
+- Stationary Sprite
+  - (231, 70) (293, 70)
+  - (231, 126) (293, 126)
+  
+<h2>Spit</h2>
+  - (0, 150) (45, 150)
+  - (0, 167) (45, 167)
 
 
