@@ -8,7 +8,7 @@ You will need to design a game with the following:
   - Stage 1: <strike>Spawns at a fixed location,</strike> fires towards the location the player taps  
   - Stage 2: Spawns at a fixed location. Players can drag the avatar and tap to fire, fires in a straight line  
 - Multiple types of enemies  
-  - Stage 1: Enemies spawn at random intervals in random locations and remain stationary  
+  - <strike>Stage 1: Enemies spawn at random intervals in random locations and remain stationary</strike>  
   - Stage 2: Enemies spawn as in Stage 1. Enemies move randomly and enemies fire back at the player avatar  
 - Count how many times the player shoots  
 - Count how many enemies the player hits  
