@@ -39,28 +39,28 @@ You will need to design a game with the following:
 
 <h2>Camel Sprite Coordinates</h2>
 - Sprite 1 
-  - (0, 183) (80, 183)
-  - (0, 237) (80, 237)
-- Sprite 2
+  - (0, 0) (77, 0)
+  - (0, 52) (77, 52)
+- Sprite (old)
   - (80, 183) (160, 183) 
   - (80, 237) (160, 237)
-- Sprite 3
+- Sprite 3 (old)
   - (160, 183) (241, 183)
   - (160, 237) (241, 237)
 
 <h2>Snake Green</h2>
-- Stationary Sprite
+- Stationary Sprite (old)
   - (0, 0) (57, 0)
   - (0, 53) (57, 53)
-- Attack Sprite
+- Attack Sprite (old)
   - (156, 75) (230, 75)
   - (156, 132) (230, 132)
 
 <h2>Snake Blue</h2>
-- Stationary Sprite
+- Stationary Sprite (old)
   - (0, 81) (54, 82)
   - (0, 132) (54, 132)
-- Attack Sprite
+- Attack Sprite (old)
   - (625, 243) (702, 243)
   - (625, 306) (702, 306)
 
