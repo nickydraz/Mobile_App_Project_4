@@ -3,11 +3,9 @@ Repo for the third project of CSC 410
 
 Project 3 will be your first step into mobile game development. 
 
-I have constructed a game engine loosely based off of the CannonApp game.  
-You can use my engine, or build your own (Warning: it took me about 8 hours to build the engine).  
 You will need to design a game with the following:  
 - A player avatar  
-  - Stage 1: Spawns at a fixed location, fires towards the location the player taps  
+  - Stage 1: <strike>Spawns at a fixed location,</strike> fires towards the location the player taps  
   - Stage 2: Spawns at a fixed location. Players can drag the avatar and tap to fire, fires in a straight line  
 - Multiple types of enemies  
   - Stage 1: Enemies spawn at random intervals in random locations and remain stationary  
