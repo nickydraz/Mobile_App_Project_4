@@ -34,6 +34,8 @@ public class World implements View.OnTouchListener {
     private SoundManager soundManager;
     public Point3F worldScale = Point3F.identity();
 
+    public int screenWidth;
+
     protected ArrayList<GameObject> objects = new ArrayList<>(1000);
     protected ArrayList<GameObject> newObjects = new ArrayList<>(1000);
 
@@ -55,6 +57,7 @@ public class World implements View.OnTouchListener {
     public void updateSize(float width, float height){
         this.width = (int)width;
         this.height = (int)height;
+        initializeGame();
         worldScale = Point3F.identity();
         worldScale.X = width / TARGET_WIDTH;
         worldScale.Y = width / TARGET_WIDTH;
@@ -102,6 +105,11 @@ public class World implements View.OnTouchListener {
         for(GameObject obj : removed) {
             obj.cull();
         }
+
+    }
+
+    public void initializeGame()
+    {
 
     }
 }
