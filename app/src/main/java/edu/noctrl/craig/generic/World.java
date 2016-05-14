@@ -38,6 +38,7 @@ public class World implements View.OnTouchListener {
 
     protected ArrayList<GameObject> objects = new ArrayList<>(1000);
     protected ArrayList<GameObject> newObjects = new ArrayList<>(1000);
+    private boolean timeToSpawn = true;
 
     public World(StateListener listener, SoundManager sounds){
         this.listener = listener;
@@ -69,6 +70,15 @@ public class World implements View.OnTouchListener {
 
     public void update(float elapsedTimeMS){
         float interval = elapsedTimeMS / 1000.0F; // convert to seconds
+        if (((int)totalElapsedTime) % 5 == 0) {
+            if(timeToSpawn) {
+                spawnEnemy();
+            }
+            timeToSpawn = false;
+        }
+        else
+        timeToSpawn = true;
+
         for(GameObject obj : objects){
             obj.update(interval);
         }
@@ -111,5 +121,10 @@ public class World implements View.OnTouchListener {
     public void initializeGame()
     {
 
+    }
+
+    public void spawnEnemy()
+    {
+        System.out.println("Bad Method");
     }
 }

@@ -5,20 +5,20 @@ import android.graphics.Rect;
 /**
  * Created by Debra, Emily, and Nick on 5/14/16.
  */
-public class SpaceCamel extends GameSprite{
+public class EnemyS1 extends GameSprite {
+    static final Rect snakeRect = new Rect(0, 75, 56, 150);
 
-    static final Rect camelRect = new Rect(0, 0, 77, 52);
     private Point3F scalePt = new Point3F(1, 1, 1);
-    private World w;
-
-    public SpaceCamel(World theWorld) {
+    World w;
+    public EnemyS1(World theWorld, Point3F pos) {
         super(theWorld);
         w = theWorld;
+        position = pos;
     }
 
     @Override
     public Rect getSource() {
-        return camelRect;
+        return snakeRect;
     }
 
     @Override
@@ -29,10 +29,5 @@ public class SpaceCamel extends GameSprite{
     @Override
     public void cull() {
 
-    }
-
-    public void setStartPt()
-    {
-        position = new Point3F(180, w.height/2, 0);
     }
 }
