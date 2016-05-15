@@ -41,25 +41,19 @@ public class StageTwo extends World {
     @Override
     public void spawnEnemy()
     {
-        //int camBuffer = 600;
         float camBuffer = (float) (cam2.getWidth() * 2.5);
-        //(int)((GameSprite) objects.get(0)).getWidth()+80;
         float yBuffer = (float) (height - (height * .80));
         int randomX = Math.min(((int)(Math.random() * (width) + camBuffer)), width);
         int randomY = (int) Math.max(((Math.random() * (height - yBuffer))), yBuffer);
         Point3F enemyPos = new Point3F(randomX, randomY, 0);
-        EnemyS1 snake = new EnemyS1(this, enemyPos);
+        EnemyS2 snake = new EnemyS2(this, enemyPos);
         this.addObject(snake);
     }
 
     public void fireSpit(MotionEvent event) {
         Point touchPoint = new Point((int) event.getX(), (int) event.getY());
 
-        double centerMinusY = (this.height / 2 - touchPoint.y);
-
-        double angle = 0;
-
-        angle = Math.atan2(touchPoint.x, centerMinusY);
+        double angle = Math.PI/2;
 
         //Fire the spit
         cam2.shootSpit(angle);

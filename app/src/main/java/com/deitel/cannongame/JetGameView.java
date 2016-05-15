@@ -22,7 +22,7 @@ import java.io.InputStream;
 
 import edu.noctrl.craig.generic.GameSprite;
 import edu.noctrl.craig.generic.SoundManager;
-import edu.noctrl.craig.generic.StageOne;
+import edu.noctrl.craig.generic.StageTwo;
 import edu.noctrl.craig.generic.World;
 
 public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, World.StateListener {
@@ -92,7 +92,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
         if (gameOver) // starting a new game after the last game ended
         {
             gameOver = false;
-            world = new StageOne(this, soundManager);
+            world = new StageTwo(this, soundManager);
             world.updateSize(screenWidth, screenHeight);
             this.setOnTouchListener(world);
             gameThread = new GameThread(holder, world); // create thread

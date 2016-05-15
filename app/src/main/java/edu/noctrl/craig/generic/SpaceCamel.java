@@ -44,7 +44,7 @@ public class SpaceCamel extends GameSprite{
 
         //Make a spit and position it
         Spit spit = new Spit(w, velocityX, velocityY, this, (float)angle);
-        Log.i("Rotation", String.valueOf(spit.rotationAngle));
+        Log.i("velocity", "x: " + velocityX + " y: " + Math.cos(angle));
         w.addObject(spit);
 
     }
