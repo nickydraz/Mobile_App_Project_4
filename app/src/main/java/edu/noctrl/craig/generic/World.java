@@ -3,10 +3,13 @@ package edu.noctrl.craig.generic;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by craig_000 on 5/9/2015.
@@ -33,6 +36,8 @@ public class World implements View.OnTouchListener {
     public StateListener listener;
     private SoundManager soundManager;
     public Point3F worldScale = Point3F.identity();
+    public Timer timer;
+    public TimerTask task;
 
     public int screenWidth;
 
@@ -44,10 +49,23 @@ public class World implements View.OnTouchListener {
     public int spitCount = 0;
     public int hitCount = 0;
     public int killCount = 0;
+    public int timeLeft=20; //amount of time remaining for stage
 
     public World(StateListener listener, SoundManager sounds){
         this.listener = listener;
         this.soundManager = sounds;
+        timer = new Timer();
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                // task to run goes here
+                timeLeft -= 1;
+                if(timeLeft <=0);
+
+            }
+        };
+        timer.scheduleAtFixedRate(task, 0,
+                1000);
     }
 
     public void addObject(GameObject obj){
@@ -75,7 +93,7 @@ public class World implements View.OnTouchListener {
 
     public void update(float elapsedTimeMS){
         float interval = elapsedTimeMS / 1000.0F; // convert to seconds
-        if (((int)totalElapsedTime) % 2 == 0) {
+        if (((int)totalElapsedTime) % 4 == 0) {
             if(timeToSpawn) {
                 spawnEnemy();
             }
@@ -92,8 +110,13 @@ public class World implements View.OnTouchListener {
     public void draw(Canvas canvas){
         if(canvas!=null){
             canvas.drawColor(Color.parseColor("#002C4C"));
+            Paint textPaint = new Paint();
+            textPaint.setColor(Color.WHITE);
+            textPaint.setTextSize(60);
+            canvas.drawText("Time Remaining: " + timeLeft + " seconds", 10, 55, textPaint);
             for(GameObject obj : objects){
                 obj.draw(canvas);
+
             }
         }
     }

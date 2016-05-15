@@ -94,7 +94,6 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
             gameOver = false;
             world = new StageOne(this, soundManager);
             world.updateSize(screenWidth, screenHeight);
-            System.out.println("In JetGameView width is " + screenWidth + " and height is " + screenHeight);
             this.setOnTouchListener(world);
             gameThread = new GameThread(holder, world); // create thread
             gameThread.start(); // start the game loop thread

@@ -5,19 +5,16 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * Created by Debra, Emily, Nick on 5/14/16.
+ * Created by Debra, Emily, and Nick on 5/15/16.
  */
-public class StageOne extends World{
-    public SpaceCamel cam;
+public class StageTwo extends World {
+    public SpaceCamel cam2;
 
-    //Constants for the spit
-    public static final double SPIT_SPEED_PERCENT = 3.0 / 2;
-
-    public StageOne(StateListener listener, SoundManager sounds) {
+    public StageTwo(StateListener listener, SoundManager sounds) {
         super(listener, sounds);
-        cam = new SpaceCamel(this);
-        cam.position =  new Point3F(180, 100, 0);
-        this.addObject(cam);
+        cam2 = new SpaceCamel(this);
+        cam2.position =  new Point3F(180, 100, 0);
+        this.addObject(cam2);
     }
 
     @Override
@@ -33,10 +30,10 @@ public class StageOne extends World{
         return true;
     }
 
-@Override
+    @Override
     public void initializeGame()
     {
-        cam.setStartPt();
+        cam2.setStartPt();
         spawnEnemy();
         spawnEnemy();
     }
@@ -45,8 +42,8 @@ public class StageOne extends World{
     public void spawnEnemy()
     {
         //int camBuffer = 600;
-        float camBuffer = (float) (cam.getWidth() * 2.5);
-                //(int)((GameSprite) objects.get(0)).getWidth()+80;
+        float camBuffer = (float) (cam2.getWidth() * 2.5);
+        //(int)((GameSprite) objects.get(0)).getWidth()+80;
         float yBuffer = (float) (height - (height * .80));
         int randomX = Math.min(((int)(Math.random() * (width) + camBuffer)), width);
         int randomY = (int) Math.max(((Math.random() * (height - yBuffer))), yBuffer);
@@ -65,7 +62,7 @@ public class StageOne extends World{
         angle = Math.atan2(touchPoint.x, centerMinusY);
 
         //Fire the spit
-        cam.shootSpit(angle);
+        cam2.shootSpit(angle);
 
         //Increment spit counter
         spitCount++;
