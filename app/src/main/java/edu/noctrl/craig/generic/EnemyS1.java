@@ -1,12 +1,13 @@
 package edu.noctrl.craig.generic;
 
 import android.graphics.Rect;
+import android.util.Log;
 
 /**
  * Created by Debra, Emily, and Nick on 5/14/16.
  */
 public class EnemyS1 extends GameSprite {
-    static final Rect snakeRect = new Rect(0, 75, 56, 150);
+    static final Rect snakeRect = new Rect(0, 70, 56, 126);
 
     private Point3F scalePt = new Point3F(1, 1, 1);
     World w;
@@ -14,6 +15,8 @@ public class EnemyS1 extends GameSprite {
         super(theWorld);
         w = theWorld;
         position = pos;
+        this.collidesWith = Collision.SolidPlayer;
+        this.substance = Collision.SolidAI;
     }
 
     @Override
@@ -29,5 +32,12 @@ public class EnemyS1 extends GameSprite {
     @Override
     public void cull() {
 
+    }
+
+    @Override
+    public void collision(GameObject other) {
+        other.kill();
+        w.killCount++;
+        Log.i("Counter", "Kill: " + w.killCount);
     }
 }

@@ -23,6 +23,10 @@ public abstract class GameSprite extends GameObject {
 
     public RectF bounds;
 
+    //Angle of rotation
+    //Used only by Spit!
+    public float rotationAngle = 0F;
+
     public GameSprite(World theWorld){super(theWorld);}
     public float getWidth(){
         Rect src = getSource();
@@ -52,7 +56,9 @@ public abstract class GameSprite extends GameObject {
         if(dest.right<0 || dest.left>canvas.getWidth()
                 || dest.bottom <0 || dest.top > canvas.getHeight())
             offScreen = true;
-        else
+        else {
             canvas.drawBitmap(SPRITE_SOURCE, src, dest, EIGHT_BIT_GOODNESS);
+        }
     }
+
 }

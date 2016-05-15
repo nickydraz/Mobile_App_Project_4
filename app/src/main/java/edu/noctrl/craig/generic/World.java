@@ -40,6 +40,11 @@ public class World implements View.OnTouchListener {
     protected ArrayList<GameObject> newObjects = new ArrayList<>(1000);
     private boolean timeToSpawn = true;
 
+    //Counter variables
+    public int spitCount = 0;
+    public int hitCount = 0;
+    public int killCount = 0;
+
     public World(StateListener listener, SoundManager sounds){
         this.listener = listener;
         this.soundManager = sounds;
@@ -70,7 +75,7 @@ public class World implements View.OnTouchListener {
 
     public void update(float elapsedTimeMS){
         float interval = elapsedTimeMS / 1000.0F; // convert to seconds
-        if (((int)totalElapsedTime) % 5 == 0) {
+        if (((int)totalElapsedTime) % 2 == 0) {
             if(timeToSpawn) {
                 spawnEnemy();
             }

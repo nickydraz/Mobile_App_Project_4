@@ -49,7 +49,9 @@ public abstract class GameObject {
     public abstract void draw(Canvas canvas);
     public abstract void cull();
     public void message(int message){}
-    public void collision(GameObject other){}
+    public void collision(GameObject other){
+        other.kill();
+    }
     public boolean isDead(){
         return this.offScreen;
     }
