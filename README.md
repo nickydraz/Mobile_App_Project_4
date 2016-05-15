@@ -3,7 +3,7 @@ Repo for the third project of CSC 410
 
 Project 3 will be your first step into mobile game development. 
 
-You will need to design a game with the following:  
+<h2>Needs to be completed</h2>
 - A player avatar  
   - Stage 1: fires towards the location the player taps <strong>(this works, but the spit doesn't rotate) </strong>
   - Stage 2: Players can drag the avatar and tap to fire
