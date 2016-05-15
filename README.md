@@ -6,14 +6,14 @@ Project 3 will be your first step into mobile game development.
 You will need to design a game with the following:  
 - A player avatar  
   - Stage 1: <strike>Spawns at a fixed location,</strike> fires towards the location the player taps <strong>(this works, but the spit doesn't rotate) </strong>
-  - Stage 2: Spawns at a fixed location. Players can drag the avatar and tap to fire, fires in a straight line  
+  - Stage 2: <strike>Spawns at a fixed location.</strike> Players can drag the avatar and tap to fire, <strike>fires in a straight line</strike>
 - Multiple types of enemies  
   - <strike>Stage 1: Enemies spawn at random intervals in random locations and remain stationary</strike>  
   - Stage 2: Enemies spawn as in Stage 1. Enemies move randomly and enemies fire back at the player avatar  
 - <strike>Count how many times the player shoots</strike>
 - <strike>Count how many enemies the player hits</strike>
 - <strike>Count how many enemies the player kills</strike>
-- Track time during stages  
+- <strike>Track time during stages</strike>
 - Multiple Stages  
   - Stage 1: Player and enemies spawn. Player has X time to kill enemies on the screen, each enemy killed adds time. Must kill at least 10 to continue to stage 2  
   - Stage 2: Player and enemies spawn. Player must kill all enemies on the screen without dying  
@@ -21,14 +21,13 @@ You will need to design a game with the following:
 - Notes:  
   - <strike>You may use simple hit detection object.dest.contains(object.position)</strike>
   - Limit the number of player projectiles on the screen at a given time  
-  - Must have multiple enemy graphics  
+  - <strike>Must have multiple enemy graphics</strike>  
   - You may use any sounds of your choice, Required sound actions:  
     - Player/Enemy fires  
     - Player Hit  
     - Enemy Hit  
     - Background Music on Loop (may use sound manager with small files or media player)  
   - You must calculate and display a score based on the statistics captured during play (weights are up to you, but must be logical)  
-  - My Jet Game and Attack of the Mooninites apk files are on the K drive to play to get an idea of gameplay  
   - You will be graded on how well the game performs and how enjoyable it is!  
 
 
