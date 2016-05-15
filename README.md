@@ -26,7 +26,7 @@ Project 3 will be your first step into mobile game development.
 <h2>Completed Steps</h2>
 - Stage 1: Spawns at a fixed location, fires towards the location the player taps 
 - Stage 2: Spawns at a fixed location. Fires in a straight line
-- - Multiple types of enemies  
+- Multiple types of enemies  
   - Stage 1: Enemies spawn in random locations at random intervals and remain stationary 
   - Stage 2: Enemies spawn as in Stage 1.
 - Count how many times the player shoots
@@ -36,7 +36,6 @@ Project 3 will be your first step into mobile game development.
 - Multiple Stages  
   - Stage 1: Player and enemies spawn. each enemy killed adds time.
   - Stage 2: Player and enemies spawn.  
-  
 - Notes:  
   - You may use simple hit detection object.dest.contains(object.position)
   - Limit the number of player projectiles on the screen at a given time 
@@ -68,6 +67,7 @@ Project 3 will be your first step into mobile game development.
 - Stationary Sprite
   - (231, 70) (293, 70)
   - (231, 126) (293, 126)
+
 <h2>Spit</h2>
   - (0, 150) (45, 150)
   - (0, 167) (45, 167)
