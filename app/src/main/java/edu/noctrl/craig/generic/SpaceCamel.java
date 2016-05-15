@@ -1,7 +1,6 @@
 package edu.noctrl.craig.generic;
 
 import android.graphics.Rect;
-import android.util.Log;
 
 /**
  * Created by Debra, Emily, and Nick on 5/14/16.
@@ -36,16 +35,18 @@ public class SpaceCamel extends GameSprite{
 
     //Method for spitting at the enemies.
     public void shootSpit(double angle) {
-        //calculate the spit velocity's X component
-        float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT *  Math.sin(angle));
+        if(w.spitLimit < 4) {
+            //calculate the spit velocity's X component
+            float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT * Math.sin(angle));
 
-        //Calculate the spit velocity's Y component
-        float velocityY = (float)(StageOne.SPIT_SPEED_PERCENT * -Math.cos(angle));
+            //Calculate the spit velocity's Y component
+            float velocityY = (float) (StageOne.SPIT_SPEED_PERCENT * -Math.cos(angle));
 
-        //Make a spit and position it
-        Spit spit = new Spit(w, velocityX, velocityY, this, (float)angle);
-        Log.i("velocity", "x: " + velocityX + " y: " + Math.cos(angle));
-        w.addObject(spit);
+            //Make a spit and position it
+            Spit spit = new Spit(w, velocityX, velocityY, this, (float) angle);
+            w.addObject(spit);
+            w.spitLimit++;
+        }
 
     }
 

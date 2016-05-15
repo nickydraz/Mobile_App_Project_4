@@ -50,6 +50,8 @@ public class World implements View.OnTouchListener {
     public int hitCount = 0;
     public int killCount = 0;
     public int timeLeft=20; //amount of time remaining for stage
+    public int spitLimit = 0; //counter for number of spits on screen at once
+
 
     public World(StateListener listener, SoundManager sounds){
         this.listener = listener;

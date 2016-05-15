@@ -1,7 +1,6 @@
 package edu.noctrl.craig.generic;
 
 import android.graphics.Rect;
-import android.util.Log;
 
 /**
  * Created by Debra, Emily, and Nick on 5/14/16.
@@ -37,12 +36,13 @@ public class Spit extends GameSprite {
 
     @Override
     public void cull() {
+        //give a spit back
+        world.spitLimit--;
     }
 
     @Override
     public void collision(GameObject other) {
         other.kill();
         world.hitCount++;
-        Log.i("Counter", "Hit: " + world.hitCount);
     }
 }

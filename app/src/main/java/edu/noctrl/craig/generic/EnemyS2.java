@@ -10,12 +10,12 @@ public class EnemyS2 extends GameSprite {
     static final Rect blueRect = new Rect(144, 70, 225, 140);
 
     private Point3F scalePt = new Point3F(1, 1, 1);
-    World w;
+    StageTwo w;
 
     int which;
 
 
-    public EnemyS2(World theWorld, Point3F pos) {
+    public EnemyS2(StageTwo theWorld, Point3F pos) {
         super(theWorld);
 
         w = theWorld;
@@ -53,6 +53,8 @@ public class EnemyS2 extends GameSprite {
     @Override
     public void collision(GameObject other) {
         other.kill();
-        w.killCount++;
+        w.killCount++; //increment num kills
+        w.timeLeft += 5; //give player more time
+        w.spitLimit--; //remove an active spit
     }
 }

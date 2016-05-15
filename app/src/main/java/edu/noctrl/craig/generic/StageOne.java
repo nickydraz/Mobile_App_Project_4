@@ -38,7 +38,6 @@ public class StageOne extends World{
     {
         cam.setStartPt();
         spawnEnemy();
-        spawnEnemy();
     }
 
     @Override
@@ -67,7 +66,7 @@ public class StageOne extends World{
         //Fire the spit
         cam.shootSpit(angle);
 
-        //Increment spit counter
+        //Increment total spit counter
         spitCount++;
     }
 }
