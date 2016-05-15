@@ -55,6 +55,5 @@ public class EnemyS2 extends GameSprite {
         other.kill();
         w.killCount++; //increment num kills
         w.timeLeft += 5; //give player more time
-        w.spitLimit--; //remove an active spit
     }
 }

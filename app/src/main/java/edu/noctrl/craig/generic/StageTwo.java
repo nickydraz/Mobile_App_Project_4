@@ -48,6 +48,8 @@ public class StageTwo extends World {
         Point3F enemyPos = new Point3F(randomX, randomY, 0);
         EnemyS2 snake = new EnemyS2(this, enemyPos);
         this.addObject(snake);
+
+        spawnInterval = (int) (Math.random() * 6 + 2); //set a new interval for next enemy
     }
 
     public void fireSpit(MotionEvent event) {

@@ -43,15 +43,15 @@ public class StageOne extends World{
     @Override
     public void spawnEnemy()
     {
-        //int camBuffer = 600;
         float camBuffer = (float) (cam.getWidth() * 2.5);
-                //(int)((GameSprite) objects.get(0)).getWidth()+80;
         float yBuffer = (float) (height - (height * .80));
         int randomX = Math.min(((int)(Math.random() * (width) + camBuffer)), width);
         int randomY = (int) Math.max(((Math.random() * (height - yBuffer))), yBuffer);
         Point3F enemyPos = new Point3F(randomX, randomY, 0);
         EnemyS1 snake = new EnemyS1(this, enemyPos);
         this.addObject(snake);
+
+        spawnInterval = (int) (Math.random() * 6 + 2);
     }
 
     public void fireSpit(MotionEvent event) {

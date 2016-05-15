@@ -43,13 +43,15 @@ public class World implements View.OnTouchListener {
 
     protected ArrayList<GameObject> objects = new ArrayList<>(1000);
     protected ArrayList<GameObject> newObjects = new ArrayList<>(1000);
-    private boolean timeToSpawn = true;
+
+    private boolean timeToSpawn = true; //should we spawn an enemy?
+    public int spawnInterval = 4; //how often should the enemy spawn?
 
     //Counter variables
     public int spitCount = 0;
     public int hitCount = 0;
     public int killCount = 0;
-    public int timeLeft=20; //amount of time remaining for stage
+    public int timeLeft = 20; //amount of time remaining for stage
     public int spitLimit = 0; //counter for number of spits on screen at once
 
 
@@ -95,7 +97,7 @@ public class World implements View.OnTouchListener {
 
     public void update(float elapsedTimeMS){
         float interval = elapsedTimeMS / 1000.0F; // convert to seconds
-        if (((int)totalElapsedTime) % 4 == 0) {
+        if (((int)totalElapsedTime) % spawnInterval == 0) {
             if(timeToSpawn) {
                 spawnEnemy();
             }
