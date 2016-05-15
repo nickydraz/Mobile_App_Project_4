@@ -24,8 +24,9 @@ Project 3 will be your first step into mobile game development.
 
 
 <h2>Completed Steps</h2>
-- Stage 1: Spawns at a fixed location, fires towards the location the player taps 
-- Stage 2: Spawns at a fixed location. Fires in a straight line
+- Player
+  - Stage 1: Spawns at a fixed location, fires towards the location the player taps 
+  - Stage 2: Spawns at a fixed location. Fires in a straight line
 - Multiple types of enemies  
   - Stage 1: Enemies spawn in random locations at random intervals and remain stationary 
   - Stage 2: Enemies spawn as in Stage 1.
