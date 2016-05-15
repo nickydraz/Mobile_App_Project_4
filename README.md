@@ -5,25 +5,22 @@ Project 3 will be your first step into mobile game development.
 
 You will need to design a game with the following:  
 - A player avatar  
-  - Stage 1: <strike>Spawns at a fixed location,</strike> fires towards the location the player taps  
+  - Stage 1: <strike>Spawns at a fixed location,</strike> fires towards the location the player taps <strong>(this works, but the spit doesn't rotate) </strong>
   - Stage 2: Spawns at a fixed location. Players can drag the avatar and tap to fire, fires in a straight line  
 - Multiple types of enemies  
   - <strike>Stage 1: Enemies spawn at random intervals in random locations and remain stationary</strike>  
   - Stage 2: Enemies spawn as in Stage 1. Enemies move randomly and enemies fire back at the player avatar  
-- Count how many times the player shoots  
-- Count how many enemies the player hits  
-- Count how many enemies the player kills  
+- <strike>Count how many times the player shoots</strike>
+- <strike>Count how many enemies the player hits</strike>
+- <strike>Count how many enemies the player kills</strike>
 - Track time during stages  
 - Multiple Stages  
   - Stage 1: Player and enemies spawn. Player has X time to kill enemies on the screen, each enemy killed adds time. Must kill at least 10 to continue to stage 2  
   - Stage 2: Player and enemies spawn. Player must kill all enemies on the screen without dying  
 - Game Over Stage: display stats and player score  
 - Notes:  
-  - You may use simple hit detection object.dest.contains(object.position)  
+  - <strike>You may use simple hit detection object.dest.contains(object.position)</strike>
   - Limit the number of player projectiles on the screen at a given time  
-  - You may use any graphics of your choice  
-  - Must be Sprite Based graphics  
-  - Player and Enemy graphics must be different  
   - Must have multiple enemy graphics  
   - You may use any sounds of your choice, Required sound actions:  
     - Player/Enemy fires  
