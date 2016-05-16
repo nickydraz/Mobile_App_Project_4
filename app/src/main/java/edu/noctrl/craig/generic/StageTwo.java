@@ -10,6 +10,12 @@ import android.view.View;
 public class StageTwo extends World {
     public SpaceCamel cam2;
 
+    //Variable for the touch event
+    private float mLastTouchX;
+    private float mLastTouchY;
+    private float mPosX;
+    private float mPosY;
+
     public StageTwo(StateListener listener, SoundManager sounds) {
         super(listener, sounds);
         cam2 = new SpaceCamel(this);
@@ -23,11 +29,47 @@ public class StageTwo extends World {
 
         int action = event.getAction();
 
-        if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_MOVE)
+
+        //If touching to the right of the camel, then spit at the enemies
+        if ((action == MotionEvent.ACTION_DOWN) && (event.getX() > (cam2.getWidth() * 2.5)))
         {
             fireSpit(event);
+            return true;
         }
-        return true;
+
+        //If touching in the camel's area, move the ship
+        int actionOnly = action & MotionEvent.ACTION_MASK; //0 x FF
+
+        switch (actionOnly) {
+            case (MotionEvent.ACTION_MOVE):
+                final float x = event.getX();
+                final float y = event.getY();
+
+                //Don't let the player move past the boundary line
+                if (x > cam2.getWidth() * 2.5)
+                {
+                    return false;
+                }
+
+                // Calculate the distance moved
+                final float dx = x - mLastTouchX;
+                final float dy = y - mLastTouchY;
+
+                // Move the object
+                mPosX += dx;
+                mPosY += dy;
+
+                // Remember this touch position for the next move event
+                mLastTouchX = x;
+                mLastTouchY = y;
+
+                cam2.position = new Point3F(mPosX, mPosY, 0F);
+                return true;
+            case (MotionEvent.ACTION_UP):
+                return false;
+            default:
+                return super.onTouch(v, event);
+        }
     }
 
     @Override
