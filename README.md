@@ -6,7 +6,6 @@ Project 3 will be your first step into mobile game development.
 <h2>Needs to be completed</h2>
 - A player avatar  
   - Stage 1: fires towards the location the player taps <strong>(this works, but the spit doesn't rotate) </strong>
-  - Stage 2: Players can drag the avatar and tap to fire
 - Multiple types of enemies  
   - Stage 2: Enemies move randomly and enemies fire back at the player avatar  
 - Multiple Stages  
@@ -27,6 +26,7 @@ Project 3 will be your first step into mobile game development.
 - Player
   - Stage 1: Spawns at a fixed location, fires towards the location the player taps 
   - Stage 2: Spawns at a fixed location. Fires in a straight line
+  - Stage 2: Players can drag the avatar and tap to fire
 - Multiple types of enemies  
   - Stage 1: Enemies spawn in random locations at random intervals and remain stationary 
   - Stage 2: Enemies spawn as in Stage 1.
