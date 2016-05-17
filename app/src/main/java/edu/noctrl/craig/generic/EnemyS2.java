@@ -2,6 +2,7 @@ package edu.noctrl.craig.generic;
 
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.Log;
 
 /**
  * Created by Debra, Nick, And Emily on 5/15/16.
@@ -17,6 +18,7 @@ public class EnemyS2 extends GameSprite {
     int which;
     boolean timeToAttack = false;
     private double birthday = 0;
+    private int randomInterval = 3;
 
 
     public EnemyS2(StageTwo theWorld, Point3F pos) {
@@ -28,6 +30,8 @@ public class EnemyS2 extends GameSprite {
         this.substance = Collision.SolidAI;
         which = (int) (Math.random() + 0.5);
         birthday = w.totalElapsedTime;
+        randomInterval = (int)(Math.random() * 15) + 3;
+        Log.i("Random", String.valueOf(randomInterval));
     }
 
     @Override
@@ -65,7 +69,7 @@ public class EnemyS2 extends GameSprite {
     @Override
     public void update(float interval){
         position.add(velocity.clone().mult(interval));
-        if (((int)(w.totalElapsedTime - birthday)) % 6 == 0) {
+        if (((int)(w.totalElapsedTime - birthday)) % randomInterval == 0) {
             if(timeToAttack) {
                 shootVenom();
             }
