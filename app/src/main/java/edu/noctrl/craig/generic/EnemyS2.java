@@ -65,7 +65,7 @@ public class EnemyS2 extends GameSprite {
     @Override
     public void update(float interval){
         position.add(velocity.clone().mult(interval));
-        if (((int)(w.totalElapsedTime - birthday)) % 3 == 0) {
+        if (((int)(w.totalElapsedTime - birthday)) % 6 == 0) {
             if(timeToAttack) {
                 shootVenom();
             }
@@ -86,7 +86,7 @@ public class EnemyS2 extends GameSprite {
         angle = Math.atan2(camelPoint.x, centerMinusY);
 
         //calculate the venom velocity's X component
-        float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT * Math.sin(angle));
+        float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT * -Math.sin(angle));
 
         //Calculate the venom velocity's Y component
         float velocityY = (float) (StageOne.SPIT_SPEED_PERCENT * -Math.cos(angle));
