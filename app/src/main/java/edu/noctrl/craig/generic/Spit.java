@@ -15,9 +15,7 @@ public class Spit extends GameSprite {
         super(theWorld);
         this.collidesWith = Collision.SolidAI;
         this.substance = Collision.SolidPlayer;
-
-        float relativeWidth = (float) (cam.getWidth() + (cam.getWidth() * 0.50));
-        this.position = cam.position.clone(); //new Point3F(relativeWidth, (theWorld.height / 2) - 50 , 0);
+        this.position = cam.position.clone();
         this.speed = 200;
         this.baseVelocity = new Point3F(velocityX, velocityY, 0F);
         this.rotationAngle = (float) (rotationAngle * (180 / Math.PI));

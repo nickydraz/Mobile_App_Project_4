@@ -1,5 +1,6 @@
 package edu.noctrl.craig.generic;
 
+import android.graphics.Point;
 import android.graphics.Rect;
 
 /**
@@ -10,9 +11,12 @@ public class EnemyS2 extends GameSprite {
     static final Rect blueRect = new Rect(144, 70, 225, 140);
 
     private Point3F scalePt = new Point3F(1, 1, 1);
+
     StageTwo w;
 
     int which;
+    boolean timeToAttack = false;
+    private double birthday = 0;
 
 
     public EnemyS2(StageTwo theWorld, Point3F pos) {
@@ -22,7 +26,8 @@ public class EnemyS2 extends GameSprite {
         position = pos;
         this.collidesWith = Collision.SolidPlayer;
         this.substance = Collision.SolidAI;
-        which = (int) (Math.random()+0.5);
+        which = (int) (Math.random() + 0.5);
+        birthday = w.totalElapsedTime;
     }
 
     @Override
@@ -55,5 +60,40 @@ public class EnemyS2 extends GameSprite {
         other.kill();
         w.killCount++; //increment num kills
         w.timeLeft += 5; //give player more time
+    }
+
+    @Override
+    public void update(float interval){
+        position.add(velocity.clone().mult(interval));
+        if (((int)(w.totalElapsedTime - birthday)) % 3 == 0) {
+            if(timeToAttack) {
+                shootVenom();
+            }
+            timeToAttack = false;
+        }
+        else
+            timeToAttack = true;
+    }
+
+    //Method for attacking the camel.
+    public void shootVenom() {
+        Point camelPoint = new Point((int) w.cam2.position.X, (int) w.cam2.position.Y);
+
+        double centerMinusY = (w.height / 2 - camelPoint.y);
+
+        double angle = 0;
+
+        angle = Math.atan2(camelPoint.x, centerMinusY);
+
+        //calculate the venom velocity's X component
+        float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT * Math.sin(angle));
+
+        //Calculate the venom velocity's Y component
+        float velocityY = (float) (StageOne.SPIT_SPEED_PERCENT * -Math.cos(angle));
+
+        //Make a venom object and position it
+        Venom venom = new Venom(w, velocityX, velocityY, this, (float) angle);
+        w.addObject(venom);
+
     }
 }
