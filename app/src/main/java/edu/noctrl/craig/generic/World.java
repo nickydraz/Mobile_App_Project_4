@@ -25,6 +25,7 @@ public class World implements View.OnTouchListener {
 
     public static interface StateListener{
         public void onGameOver(boolean lost);
+        public void onNextStage(boolean next);
     }
     protected static final float TARGET_WIDTH = 540;
     protected static final float TARGET_HEIGHT = 960;
@@ -64,7 +65,6 @@ public class World implements View.OnTouchListener {
             public void run() {
                 // task to run goes here
                 timeLeft -= 1;
-                if(timeLeft <=0);
 
             }
         };
@@ -109,7 +109,8 @@ public class World implements View.OnTouchListener {
         for(GameObject obj : objects){
             obj.update(interval);
         }
-
+        //checks if game is over
+        isGameOver();
     }
     public void draw(Canvas canvas){
         if(canvas!=null){
@@ -158,5 +159,12 @@ public class World implements View.OnTouchListener {
     public void spawnEnemy()
     {
         System.out.println("Bad Method");
+    }
+
+    //method to be overriden in each stage to check if the end game requirements have been handled
+    //called in update mode
+    public void isGameOver()
+    {
+
     }
 }

@@ -1,6 +1,9 @@
 package edu.noctrl.craig.generic;
 
+import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.RectF;
+import android.util.Log;
 
 /**
  * Created by Debra, Emily, and Nick on 5/14/16.
@@ -18,7 +21,7 @@ public class Spit extends GameSprite {
         this.position = cam.position.clone();
         this.speed = 200;
         this.baseVelocity = new Point3F(velocityX, velocityY, 0F);
-        this.rotationAngle = (float) (rotationAngle * (180 / Math.PI));
+        this.rotationAngle = (float) (rotationAngle * (180 / Math.PI)) - 90f; //in degrees
         this.updateVelocity();
     }
 
@@ -42,5 +45,32 @@ public class Spit extends GameSprite {
     public void collision(GameObject other) {
         other.kill();
         world.hitCount++;
+    }
+
+
+    public void draw(Canvas canvas)
+    {
+        Log.e("Spit", "is being drawn! the angle is " + rotationAngle);
+        canvas.save();
+
+        if(canvas == null)
+            return;
+        Rect src = getSource();
+        Point3F scale = getScale();
+        float width = ((src.width() * scale.X) * scale.Z * this.world.worldScale.X)/2F;
+        float height = ((src.height() * scale.Y) * scale.Z * this.world.worldScale.Y)/2F;
+        //Rect(int left, int top, int right, int bottom)
+        RectF dest = new RectF(0,0,width,height);
+        bounds = dest;
+        if(dest.right<0 || dest.left>canvas.getWidth()
+                || dest.bottom <0 || dest.top > canvas.getHeight())
+            offScreen = true;
+        else {
+            canvas.translate(position.X, position.Y);
+            canvas.rotate(rotationAngle);
+            canvas.drawBitmap(SPRITE_SOURCE, src, dest, EIGHT_BIT_GOODNESS);
+        }
+        canvas.restore();
+
     }
 }

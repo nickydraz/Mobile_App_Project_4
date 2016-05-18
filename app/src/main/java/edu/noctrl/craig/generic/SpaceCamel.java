@@ -30,6 +30,7 @@ public class SpaceCamel extends GameSprite{
 
     @Override
     public void cull() {
+        w.listener.onGameOver(true);
 
     }
 

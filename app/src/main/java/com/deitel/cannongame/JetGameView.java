@@ -22,6 +22,7 @@ import java.io.InputStream;
 
 import edu.noctrl.craig.generic.GameSprite;
 import edu.noctrl.craig.generic.SoundManager;
+import edu.noctrl.craig.generic.StageOne;
 import edu.noctrl.craig.generic.StageTwo;
 import edu.noctrl.craig.generic.World;
 
@@ -92,7 +93,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
         if (gameOver) // starting a new game after the last game ended
         {
             gameOver = false;
-            world = new StageTwo(this, soundManager);
+            world = new StageOne(this, soundManager);
             world.updateSize(screenWidth, screenHeight);
             this.setOnTouchListener(world);
             gameThread = new GameThread(holder, world); // create thread
@@ -116,8 +117,8 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
                         // display number of shots fired and total time elapsed
                         builder.setMessage(getResources().getString(
                                 R.string.results_format,
-                                0,//world.shotsFired,
-                                0,//world.kills,
+                                world.spitCount,//world.shotsFired,
+                                world.killCount,//world.kills,
                                 0,//world.remaining,
                                 0,//world.score,
                                 world.totalElapsedTime));
@@ -147,6 +148,55 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
                 } // end Runnable
         ); // end call to runOnUiThread
     } // end method showGameOverDialog
+
+
+    // display an AlertDialog when the game ends
+    private void showGameWinDialog(final int messageId) {
+        // DialogFragment to display quiz stats and start new quiz
+        final DialogFragment gameResult =
+                new DialogFragment() {
+                    // create an AlertDialog and return it
+                    @Override
+                    public Dialog onCreateDialog(Bundle bundle) {
+                        // create dialog displaying String resource for messageId
+                        AlertDialog.Builder builder =
+                                new AlertDialog.Builder(getActivity());
+                        //builder.setTitle(getResources().getString(messageId));
+
+                        // display number of shots fired and total time elapsed
+                        builder.setMessage(getResources().getString(
+                                R.string.results_format,
+                                world.spitCount,//world.shotsFired,
+                                world.killCount,//world.kills,
+                                0,//world.remaining,
+                                0,//world.score,
+                                world.totalElapsedTime));
+                        builder.setPositiveButton(R.string.next,
+                                new DialogInterface.OnClickListener() {
+                                    // called when "Reset Game" Button is pressed
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialogIsDisplayed = false;
+                                        setStage(getHolder()); // set up next Stage
+                                    }
+                                } // end anonymous inner class
+                        ); // end call to setPositiveButton
+
+                        return builder.create(); // return the AlertDialog
+                    } // end method onCreateDialog
+                }; // end DialogFragment anonymous inner class
+
+        // in GUI thread, use FragmentManager to display the DialogFragment
+        activity.runOnUiThread(
+                new Runnable() {
+                    public void run() {
+                        dialogIsDisplayed = true;
+                        gameResult.setCancelable(false); // modal dialog
+                        gameResult.show(activity.getFragmentManager(), "results");
+                    }
+                } // end Runnable
+        ); // end call to runOnUiThread
+    } // end method showGameWinDialog
 
     // stops the game; called by JetGameFragment's onPause method
     public void stopGame() {
@@ -197,5 +247,22 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
         gameOver = true; // the game is over
         gameThread.stopGame(); // terminate thread
         showGameOverDialog(R.string.lose); // show the losing dialog
+    }
+
+    @Override
+    public void onNextStage(boolean next)
+    {
+        gameThread.stopGame(); //stop game thread
+        showGameWinDialog(R.string.win);
+
+    }
+
+    public void setStage(SurfaceHolder holder)
+    {
+        world = new StageTwo(this, soundManager);
+        world.updateSize(screenWidth, screenHeight);
+        this.setOnTouchListener(world);
+        gameThread = new GameThread(holder, world); // create thread
+        gameThread.start(); // start the game loop thread
     }
 }

@@ -68,5 +68,19 @@ public class StageOne extends World{
 
         //Increment total spit counter
         spitCount++;
+
+    }
+
+    @Override
+    public void isGameOver()
+    {
+        if (timeLeft == 0 && killCount < 10)
+        {
+            this.listener.onGameOver(true);
+        }
+        else if(timeLeft == 0 && killCount >= 10)
+        {
+            this.listener.onNextStage(true);
+        }
     }
 }
