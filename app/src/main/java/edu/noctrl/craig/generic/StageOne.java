@@ -10,8 +10,9 @@ import android.view.View;
 public class StageOne extends World{
     public SpaceCamel cam;
 
-    //Constants for the spit
+    //Constants
     public static final double SPIT_SPEED_PERCENT = 3.0 / 2;
+    private final int ENEMIES_NEEDED = 10;
 
     public StageOne(StateListener listener, SoundManager sounds) {
         super(listener, sounds);
@@ -74,11 +75,12 @@ public class StageOne extends World{
     @Override
     public void isGameOver()
     {
-        if (timeLeft == 0 && killCount < 10)
+        if (timeLeft == 0 && killCount < ENEMIES_NEEDED)
         {
+            this.enemies_left = ENEMIES_NEEDED - killCount; //how close was the player?
             this.listener.onGameOver(true);
         }
-        else if(killCount >= 10)
+        else if(killCount >= ENEMIES_NEEDED)
         {
             this.listener.onNextStage(true);
         }

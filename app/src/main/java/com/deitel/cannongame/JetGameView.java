@@ -168,8 +168,8 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
                                 R.string.results_format,
                                 world.spitCount,//world.shotsFired,
                                 world.killCount,//world.kills,
-                                0,//world.remaining,
-                                0,//world.score,
+                                world.enemies_left,//world.remaining,
+                                world.score,//world.score,
                                 world.totalElapsedTime));
                         builder.setPositiveButton(R.string.next,
                                 new DialogInterface.OnClickListener() {

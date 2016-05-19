@@ -1,6 +1,7 @@
 package edu.noctrl.craig.generic;
 
 import android.graphics.Point;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -9,6 +10,8 @@ import android.view.View;
  */
 public class StageTwo extends World {
     public SpaceCamel cam2;
+
+    private final int ENEMIES_NEEDED = 20;
 
     //Variable for the touch event
     private float mLastTouchX;
@@ -37,7 +40,7 @@ public class StageTwo extends World {
             return true;
         }
 
-        //If touching in the camel's area, move the ship
+        //If touching in the camel's area, move the camel
         int actionOnly = action & MotionEvent.ACTION_MASK; //0 x FF
 
         switch (actionOnly) {
@@ -109,11 +112,14 @@ public class StageTwo extends World {
     @Override
     public void isGameOver()
     {
-        if (timeLeft == 0 && killCount < 20)
+        if (timeLeft == 0 && killCount < ENEMIES_NEEDED)
         {
+            // !! this isn't getting called for some reason !!
+            this.enemies_left = ENEMIES_NEEDED - killCount;
+            System.out.println("Enemies left: " + enemies_left);
             this.listener.onGameOver(true);
         }
-        else if(killCount >= 20)
+        else if(killCount >= ENEMIES_NEEDED)
         {
             this.listener.onNextStage(true);
         }

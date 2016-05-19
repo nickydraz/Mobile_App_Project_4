@@ -23,9 +23,9 @@ public class World implements View.OnTouchListener {
         return true;
     }
 
-    public static interface StateListener{
-        public void onGameOver(boolean lost);
-        public void onNextStage(boolean next);
+    public interface StateListener{
+        void onGameOver(boolean lost);
+        void onNextStage(boolean next);
     }
     protected static final float TARGET_WIDTH = 540;
     protected static final float TARGET_HEIGHT = 960;
@@ -54,6 +54,8 @@ public class World implements View.OnTouchListener {
     public int killCount = 0;
     public int timeLeft = 20; //amount of time remaining for stage
     public int spitLimit = 0; //counter for number of spits on screen at once
+    public int score = 0;     //the player's score
+    public int enemies_left = 0;
 
 
     public World(StateListener listener, SoundManager sounds){
