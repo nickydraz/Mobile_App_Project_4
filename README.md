@@ -3,15 +3,12 @@ Repo for the third project of CSC 410
 
 Project 3 will be your first step into mobile game development. 
 
-<h2>Needs to be completed</h2>
-- A player avatar  
-  - Stage 1: fires towards the location the player taps <strong>(this works, but the spit doesn't rotate) </strong>
+<h2>Items to Complete:</h2>
 - Multiple types of enemies  
-  - Stage 2: Enemies move randomly and enemies fire back at the player avatar 
-    - The enemies fire at the player, but the math is wrong somewhere, so their aim is sometimes off. Once this is fixed, this step will be complete.
+  - Stage 2: Enemies move randomly
 - Game Over Stage: display stats and player score  
 - Notes:  
-  - You may use any sounds of your choice, Required sound actions:  
+  - Required sound actions:  
     - Player/Enemy fires  
     - Player Hit  
     - Enemy Hit  
@@ -27,7 +24,7 @@ Project 3 will be your first step into mobile game development.
   - Stage 2: Players can drag the avatar and tap to fire
 - Multiple types of enemies  
   - Stage 1: Enemies spawn in random locations at random intervals and remain stationary 
-  - Stage 2: Enemies spawn as in Stage 1.
+  - Stage 2: Enemies spawn as in Stage 1. Enemies fire at player.
 - Multiple Stages  
   - Stage 1: Player has X time to kill enemies on the screen. Must kill at least 10 to continue to stage 2  
   - Stage 2: Player must kill all enemies on the screen without dying 
