@@ -9,9 +9,6 @@ Project 3 will be your first step into mobile game development.
 - Multiple types of enemies  
   - Stage 2: Enemies move randomly and enemies fire back at the player avatar 
     - The enemies fire at the player, but the math is wrong somewhere, so their aim is sometimes off. Once this is fixed, this step will be complete.
-- Multiple Stages  
-  - Stage 1: Player has X time to kill enemies on the screen. Must kill at least 10 to continue to stage 2  
-  - Stage 2: Player must kill all enemies on the screen without dying  
 - Game Over Stage: display stats and player score  
 - Notes:  
   - You may use any sounds of your choice, Required sound actions:  
@@ -31,6 +28,9 @@ Project 3 will be your first step into mobile game development.
 - Multiple types of enemies  
   - Stage 1: Enemies spawn in random locations at random intervals and remain stationary 
   - Stage 2: Enemies spawn as in Stage 1.
+- Multiple Stages  
+  - Stage 1: Player has X time to kill enemies on the screen. Must kill at least 10 to continue to stage 2  
+  - Stage 2: Player must kill all enemies on the screen without dying 
 - Count how many times the player shoots
 - Count how many enemies the player hits
 - Count how many enemies the player kills
