@@ -83,7 +83,7 @@ public class StageTwo extends World {
     @Override
     public void spawnEnemy()
     {
-        float camBuffer = (float) (cam2.getWidth() * 2.5);
+        float camBuffer = (float) Math.max((cam2.getWidth() * 2.5), 600.0);
         float yBuffer = (float) (height - (height * .80));
         int randomX = Math.min(((int)(Math.random() * (width) + camBuffer)), width);
         int randomY = (int) Math.max(((Math.random() * (height - yBuffer))), yBuffer);
@@ -104,5 +104,18 @@ public class StageTwo extends World {
 
         //Increment spit counter
         spitCount++;
+    }
+
+    @Override
+    public void isGameOver()
+    {
+        if (timeLeft == 0 && killCount < 20)
+        {
+            this.listener.onGameOver(true);
+        }
+        else if(killCount >= 20)
+        {
+            this.listener.onNextStage(true);
+        }
     }
 }

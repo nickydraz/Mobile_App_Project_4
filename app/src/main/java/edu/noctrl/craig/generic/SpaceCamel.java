@@ -37,6 +37,7 @@ public class SpaceCamel extends GameSprite{
     //Method for spitting at the enemies.
     public void shootSpit(double angle) {
         if(w.spitLimit < 4) {
+
             //calculate the spit velocity's X component
             float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT * Math.sin(angle));
 

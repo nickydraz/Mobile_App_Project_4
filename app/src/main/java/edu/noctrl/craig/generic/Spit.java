@@ -1,9 +1,6 @@
 package edu.noctrl.craig.generic;
 
-import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.util.Log;
 
 /**
  * Created by Debra, Emily, and Nick on 5/14/16.
@@ -23,6 +20,7 @@ public class Spit extends GameSprite {
         this.baseVelocity = new Point3F(velocityX, velocityY, 0F);
         this.rotationAngle = (float) (rotationAngle * (180 / Math.PI)) - 90f; //in degrees
         this.updateVelocity();
+
     }
 
     @Override
@@ -47,14 +45,16 @@ public class Spit extends GameSprite {
         world.hitCount++;
     }
 
-
+   /* @Override
     public void draw(Canvas canvas)
     {
-        Log.e("Spit", "is being drawn! the angle is " + rotationAngle);
+        //Log.e("Spit", "is being drawn! the angle is " + rotationAngle);
         canvas.save();
 
-        if(canvas == null)
+        if(canvas == null) {
+            Log.i("null", "Canvas is null");
             return;
+        }
         Rect src = getSource();
         Point3F scale = getScale();
         float width = ((src.width() * scale.X) * scale.Z * this.world.worldScale.X)/2F;
@@ -62,9 +62,10 @@ public class Spit extends GameSprite {
         //Rect(int left, int top, int right, int bottom)
         RectF dest = new RectF(0,0,width,height);
         bounds = dest;
-        if(dest.right<0 || dest.left>canvas.getWidth()
-                || dest.bottom <0 || dest.top > canvas.getHeight())
-            offScreen = true;
+        if(dest.right < 0 || dest.left > canvas.getWidth()
+                || dest.bottom < 0 || dest.top > canvas.getHeight()){
+            Log.i("Offscreen", "Offscreen");
+            offScreen = true;}
         else {
             canvas.translate(position.X, position.Y);
             canvas.rotate(rotationAngle);
@@ -72,5 +73,5 @@ public class Spit extends GameSprite {
         }
         canvas.restore();
 
-    }
+    }*/
 }

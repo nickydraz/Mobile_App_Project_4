@@ -1,19 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/Users/debra/Desktop/NCC/CSC410MobileApps/Project 3/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        revision="22.0.1"
-        sha1="e4df7d55c69472f39a3f7aa350934de6e034dcd4">
-        <dex dex="/Users/debra/Desktop/NCC/CSC410MobileApps/Project 3/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_dd5cececab40543b7a5e7f7a3856ce84bdcd225a/classes.dex" />
-    </item>
-    <item
-        jar="/Users/debra/Desktop/NCC/CSC410MobileApps/Project 3/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="22.0.1"
-        sha1="26d393f5524d54a888fcdad3c572a9c743d61e35">
-        <dex dex="/Users/debra/Desktop/NCC/CSC410MobileApps/Project 3/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_9421631ad8d3cb2a4fea0cc23a62d6508140a690/classes.dex" />
-    </item>
-
-</items>
+<items version="2" />

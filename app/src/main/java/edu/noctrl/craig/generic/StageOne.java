@@ -43,7 +43,7 @@ public class StageOne extends World{
     @Override
     public void spawnEnemy()
     {
-        float camBuffer = (float) (cam.getWidth() * 2.5);
+        float camBuffer = (float) Math.max((cam.getWidth() * 2.5), 600.0);
         float yBuffer = (float) (height - (height * .80));
         int randomX = Math.min(((int)(Math.random() * (width) + camBuffer)), width);
         int randomY = (int) Math.max(((Math.random() * (height - yBuffer))), yBuffer);
@@ -78,7 +78,7 @@ public class StageOne extends World{
         {
             this.listener.onGameOver(true);
         }
-        else if(timeLeft == 0 && killCount >= 10)
+        else if(killCount >= 10)
         {
             this.listener.onNextStage(true);
         }
