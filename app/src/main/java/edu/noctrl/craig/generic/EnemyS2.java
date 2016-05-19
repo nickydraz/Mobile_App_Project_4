@@ -8,8 +8,8 @@ import android.util.Log;
  * Created by Debra, Nick, And Emily on 5/15/16.
  */
 public class EnemyS2 extends GameSprite {
-    static final Rect greenRect = new Rect(0, 70, 56, 135);
-    static final Rect blueRect = new Rect(144, 70, 225, 140);
+    static final Rect greenRect = new Rect(66, 70, 142, 126); //green attack snake
+    static final Rect blueRect = new Rect(144, 70, 225, 140); //blue attack snake
 
     private Point3F scalePt = new Point3F(1, 1, 1);
 

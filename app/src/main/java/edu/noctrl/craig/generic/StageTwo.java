@@ -121,7 +121,7 @@ public class StageTwo extends World {
         }
         else if(killCount >= ENEMIES_NEEDED)
         {
-            this.listener.onNextStage(true);
+            this.listener.onNextStage(true); //do we want an infinite game?
         }
     }
 }
