@@ -6,14 +6,12 @@ Project 3 will be your first step into mobile game development.
 <h2>Items to Complete:</h2>
 - Multiple types of enemies  
   - Stage 2: Enemies move randomly
-- Game Over Stage: display stats and player score  
 - Notes:  
   - Required sound actions:  
     - Player/Enemy fires  
     - Player Hit  
     - Enemy Hit  
     - Background Music on Loop (may use sound manager with small files or media player)  
-  - You must calculate and display a score based on the statistics captured during play (weights are up to you, but must be logical)  
   - You will be graded on how well the game performs and how enjoyable it is!  
 
 
@@ -36,10 +34,11 @@ Project 3 will be your first step into mobile game development.
   - Stage 1: Player and enemies spawn. each enemy killed adds time.
   - Stage 2: Player and enemies spawn.  
 - Notes:  
+  - Game Over Stage: display stats and player score  
   - You may use simple hit detection object.dest.contains(object.position)
   - Limit the number of player projectiles on the screen at a given time 
   - Must have multiple enemy graphics
-  
+  - You must calculate and display a score based on the statistics captured during play (weights are up to you, but must be logical) 
 <h2>Camel Sprite Coordinates</h2>
 - Sprite 1 
   - (0, 0) (77, 0)
