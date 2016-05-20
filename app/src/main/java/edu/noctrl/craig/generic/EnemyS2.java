@@ -2,6 +2,7 @@ package edu.noctrl.craig.generic;
 
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.Log;
 
 /**
  * Created by Debra, Nick, And Emily on 5/15/16.
@@ -16,8 +17,14 @@ public class EnemyS2 extends GameSprite {
 
     int which;
     boolean timeToAttack = false;
+    boolean timeToMove = false;
     private double birthday = 0;
-    private int randomInterval = 3;
+    private int randomIntervalSpit = 3;
+    private int randomIntervalMove = 3;
+    private int randomX;
+    private int randomY;
+
+    private int numUpdates = 30;
 
 
     public EnemyS2(StageTwo theWorld, Point3F pos) {
@@ -29,7 +36,12 @@ public class EnemyS2 extends GameSprite {
         this.substance = Collision.SolidAI;
         which = (int) (Math.random() + 0.5);
         birthday = w.totalElapsedTime;
-        randomInterval = (int)(Math.random() * 6) + 2;
+        randomIntervalSpit = (int)(Math.random() * 6) + 2;
+        randomIntervalMove = (int)(Math.random()*4) + 2;
+        randomX =  (int)this.position.X;
+        randomY =  (int)this.position.Y;
+        speed = 100;
+
     }
 
     @Override
@@ -76,7 +88,8 @@ public class EnemyS2 extends GameSprite {
     @Override
     public void update(float interval){
         position.add(velocity.clone().mult(interval));
-        if (((int)(w.totalElapsedTime - birthday)) % randomInterval == 0) {
+        //Random fire
+        if (((int)(w.totalElapsedTime - birthday)) % randomIntervalSpit == 0) {
             if(timeToAttack) {
                 shootVenom();
             }
@@ -84,18 +97,35 @@ public class EnemyS2 extends GameSprite {
         }
         else
             timeToAttack = true;
+
+        //Random Move
+        if (((int)(w.totalElapsedTime - birthday)) % randomIntervalMove == 0) {
+            if(timeToMove) {
+                setVelocity();
+            }
+            timeToMove = false;
+        }
+        else
+            timeToMove = true;
+
+        //we've reached the random point generated
+        if(numUpdates == 0) {
+           Log.i("EnemyPos" , "I'm in my spot");
+            this.baseVelocity.X = 0;
+            this.baseVelocity.Y = 0;
+            this.updateVelocity();
+            numUpdates = 30;
+        }
+        else
+            numUpdates--;
     }
 
     //Method for attacking the camel.
     public void shootVenom() {
         Point camelPoint = new Point((int) w.cam2.position.X, (int) w.cam2.position.Y);
-
-        double centerMinusY = (w.height / 2 - camelPoint.y);
-
         double angle = 0;
 
         angle = Math.atan2(this.position.X - camelPoint.x, camelPoint.y - this.position.Y);
-        //camelPoint.x, centerMinusY
         //calculate the venom velocity's X component
         float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT * -Math.sin(angle));
 
@@ -106,5 +136,41 @@ public class EnemyS2 extends GameSprite {
         Venom venom = new Venom(w, velocityX, velocityY, this, (float) angle);
         w.addObject(venom);
 
+    }
+
+    public void setVelocity()
+    {
+        float camBuffer = (float) Math.max((w.cam2.getWidth() * 2.5), 600.0);
+        float yBuffer = (float) (w.height - (w.height * .80));
+        float range = (w.width - camBuffer) + 1;
+        randomX = (int) ((Math.random() * range) + camBuffer );
+        randomY = (int) Math.max(((Math.random() * (w.height - yBuffer))), yBuffer);
+
+        Point randPoint = new Point( randomX, randomY);
+
+        double centerMinusY = (w.height / 2 - randPoint.y);
+
+        double angle = 0;
+
+        angle = Math.atan2(this.position.X - randPoint.x, randPoint.y - this.position.Y);
+        //calculate the venom velocity's X component
+        float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT * -Math.sin(angle));
+
+        //Calculate the venom velocity's Y component
+        float velocityY = (float) (StageOne.SPIT_SPEED_PERCENT * Math.cos(angle));
+
+        this.baseVelocity.X = velocityX;
+        this.baseVelocity.Y = velocityY;
+        this.rotationAngle = (float) angle;
+
+        this.updateVelocity();
+    }
+
+    private boolean checkPos()
+    {
+        if(this.position.X == randomX && this.position.Y == randomY)
+             return true;
+        else
+            return false;
     }
 }
