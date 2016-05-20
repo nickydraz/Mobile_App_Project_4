@@ -27,6 +27,7 @@ public class World implements View.OnTouchListener {
     public interface StateListener{
         void onGameOver(boolean lost);
         void onNextStage(boolean next);
+        void onWinGame(boolean won);
     }
     protected static final float TARGET_WIDTH = 540;
     protected static final float TARGET_HEIGHT = 960;

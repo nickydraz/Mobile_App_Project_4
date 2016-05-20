@@ -95,6 +95,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     public void newGame(SurfaceHolder holder) {
         if (gameOver) // starting a new game after the last game ended
         {
+            this.score =0;
             gameOver = false;
             world = new StageOne(this, soundManager);
             world.updateSize(screenWidth, screenHeight);
@@ -118,7 +119,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
                         //builder.setTitle(getResources().getString(messageId));
 
                         // display number of shots fired and total time elapsed
-                        builder.setMessage(getResources().getString(
+                        builder.setMessage(getResources().getString(R.string.lose) + "\n" +getResources().getString(
                                 R.string.results_format,
                                 world.spitCount,//world.shotsFired,
                                 world.killCount,//world.kills,
@@ -153,8 +154,8 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     } // end method showGameOverDialog
 
 
-    // display an AlertDialog when the game ends
-    private void showGameWinDialog(final int messageId) {
+    // display an AlertDialog when the player beats a level
+    private void showGameStageWinDialog(final int messageId) {
         // DialogFragment to display quiz stats and start new quiz
         final DialogFragment gameResult =
                 new DialogFragment() {
@@ -167,7 +168,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
                         //builder.setTitle(getResources().getString(messageId));
 
                         // display number of shots fired and total time elapsed
-                        builder.setMessage(getResources().getString(
+                        builder.setMessage(getResources().getString(R.string.win)+ "\n" + getResources().getString(
                                 R.string.results_format,
                                 world.spitCount,//world.shotsFired,
                                 world.killCount,//world.kills,
@@ -181,6 +182,54 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialogIsDisplayed = false;
                                         setStage(getHolder()); // set up next Stage
+                                    }
+                                } // end anonymous inner class
+                        ); // end call to setPositiveButton
+
+                        return builder.create(); // return the AlertDialog
+                    } // end method onCreateDialog
+                }; // end DialogFragment anonymous inner class
+
+        // in GUI thread, use FragmentManager to display the DialogFragment
+        activity.runOnUiThread(
+                new Runnable() {
+                    public void run() {
+                        dialogIsDisplayed = true;
+                        gameResult.setCancelable(false); // modal dialog
+                        gameResult.show(activity.getFragmentManager(), "results");
+                    }
+                } // end Runnable
+        ); // end call to runOnUiThread
+    } // end method showGameStageWinDialog
+
+    // display an AlertDialog when the player beats a level
+    private void showGameWinDialog(final int messageId) {
+        // DialogFragment to display quiz stats and start new quiz
+        final DialogFragment gameResult =
+                new DialogFragment() {
+                    // create an AlertDialog and return it
+                    @Override
+                    public Dialog onCreateDialog(Bundle bundle) {
+                        // create dialog displaying String resource for messageId
+                        AlertDialog.Builder builder =
+                                new AlertDialog.Builder(getActivity());
+                        //builder.setTitle(getResources().getString(messageId));
+
+                        // display number of shots fired and total time elapsed
+                        builder.setMessage(getResources().getString(R.string.win) +"\n" +getResources().getString(
+                                R.string.results_format,
+                                world.spitCount,//world.shotsFired,
+                                world.killCount,//world.kills,
+                                world.enemies_left,//world.remaining,
+                                world.score,//world.score,
+                                world.totalElapsedTime));
+                        builder.setPositiveButton(R.string.reset_game,
+                                new DialogInterface.OnClickListener() {
+                                    // called when "Reset Game" Button is pressed
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialogIsDisplayed = false;
+                                        newGame(getHolder()); // set up next Stage
                                     }
                                 } // end anonymous inner class
                         ); // end call to setPositiveButton
@@ -257,10 +306,18 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     {
         score += world.score;
         gameThread.stopGame(); //stop game thread
-        showGameWinDialog(R.string.win);
+        showGameStageWinDialog(R.string.win);
 
     }
 
+    @Override
+    public void onWinGame(boolean won)
+    {
+        score += world.score;
+        gameOver=true;
+        gameThread.stopGame();
+        showGameWinDialog(R.string.win);
+    }
     public void setStage(SurfaceHolder holder)
     {
         world = new StageTwo(this, soundManager);

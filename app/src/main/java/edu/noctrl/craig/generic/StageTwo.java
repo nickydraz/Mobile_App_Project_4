@@ -21,7 +21,7 @@ public class StageTwo extends World {
         cam2 = new SpaceCamel(this);
         cam2.position =  new Point3F(180, 100, 0);
         this.addObject(cam2);
-        ENEMIES_NEEDED = 20;
+        ENEMIES_NEEDED = 2;
     }
 
     @Override
@@ -118,7 +118,8 @@ public class StageTwo extends World {
         }
         else if(killCount >= ENEMIES_NEEDED)
         {
-            this.listener.onNextStage(true); //do we want an infinite game?
+            this.listener.onWinGame(true); //do we want an infinite game?
         }
     }
+
 }

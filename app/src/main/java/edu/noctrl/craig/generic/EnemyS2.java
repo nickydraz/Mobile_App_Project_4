@@ -29,7 +29,7 @@ public class EnemyS2 extends GameSprite {
         this.substance = Collision.SolidAI;
         which = (int) (Math.random() + 0.5);
         birthday = w.totalElapsedTime;
-        randomInterval = (int)(Math.random() * 2) + 2;
+        randomInterval = (int)(Math.random() * 6) + 2;
     }
 
     @Override
@@ -94,13 +94,13 @@ public class EnemyS2 extends GameSprite {
 
         double angle = 0;
 
-        angle = Math.atan2(camelPoint.x, centerMinusY);
-
+        angle = Math.atan2(this.position.X - camelPoint.x, camelPoint.y - this.position.Y);
+        //camelPoint.x, centerMinusY
         //calculate the venom velocity's X component
         float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT * -Math.sin(angle));
 
         //Calculate the venom velocity's Y component
-        float velocityY = (float) (StageOne.SPIT_SPEED_PERCENT * -Math.cos(angle));
+        float velocityY = (float) (StageOne.SPIT_SPEED_PERCENT * Math.cos(angle));
 
         //Make a venom object and position it
         Venom venom = new Venom(w, velocityX, velocityY, this, (float) angle);
