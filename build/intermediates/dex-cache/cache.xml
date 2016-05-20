@@ -1,19 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/Volumes/EMILY&apos;S USB/School/Senior Year/Spring/Mobile/Project3/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="22.0.1"
-        sha1="847a18f594221965f29ff7d3b4baf24f45e5d839">
-        <dex dex="/Volumes/EMILY&apos;S USB/School/Senior Year/Spring/Mobile/Project3/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_3b93c6348121f4b8229a065ac2b3daf2633f1d0d/classes.dex" />
-    </item>
-    <item
-        jar="/Volumes/EMILY&apos;S USB/School/Senior Year/Spring/Mobile/Project3/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        revision="22.0.1"
-        sha1="7a5c84ad6d2138eee622fe14dab51b757476d68c">
-        <dex dex="/Volumes/EMILY&apos;S USB/School/Senior Year/Spring/Mobile/Project3/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_51498514cdb32d8a68ecdc37700adbf6b4924f3a/classes.dex" />
-    </item>
-
-</items>
+<items version="2" />

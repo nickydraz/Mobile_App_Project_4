@@ -15,6 +15,7 @@ import java.util.TimerTask;
  * Created by craig_000 on 5/9/2015.
  */
 public class World implements View.OnTouchListener {
+    public int ENEMIES_NEEDED;
     public static Object GUI_LOCKER = new Object();
     public static Resources resources;
     @Override

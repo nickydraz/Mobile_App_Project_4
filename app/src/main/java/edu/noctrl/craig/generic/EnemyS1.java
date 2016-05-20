@@ -30,7 +30,7 @@ public class EnemyS1 extends GameSprite {
 
     @Override
     public void cull() {
-
+        w.score += 100;
     }
 
     @Override

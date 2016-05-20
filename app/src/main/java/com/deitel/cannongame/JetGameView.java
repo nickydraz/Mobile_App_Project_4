@@ -39,6 +39,9 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     // variables for the game loop and tracking statistics
     private boolean gameOver; // is the game over?
 
+    //Variable for the score
+    private int score = 0;
+
     private int screenWidth;
     private int screenHeight;
 
@@ -119,8 +122,8 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
                                 R.string.results_format,
                                 world.spitCount,//world.shotsFired,
                                 world.killCount,//world.kills,
-                                0,//world.remaining,
-                                0,//world.score,
+                                world.enemies_left,//world.remaining,
+                                world.score,//world.score,
                                 world.totalElapsedTime));
                         builder.setPositiveButton(R.string.reset_game,
                                 new DialogInterface.OnClickListener() {
@@ -252,6 +255,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     @Override
     public void onNextStage(boolean next)
     {
+        score += world.score;
         gameThread.stopGame(); //stop game thread
         showGameWinDialog(R.string.win);
 
@@ -260,6 +264,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     public void setStage(SurfaceHolder holder)
     {
         world = new StageTwo(this, soundManager);
+        world.score = score;
         world.updateSize(screenWidth, screenHeight);
         this.setOnTouchListener(world);
         gameThread = new GameThread(holder, world); // create thread

@@ -1,7 +1,6 @@
 package edu.noctrl.craig.generic;
 
 import android.graphics.Point;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -10,8 +9,6 @@ import android.view.View;
  */
 public class StageTwo extends World {
     public SpaceCamel cam2;
-
-    private final int ENEMIES_NEEDED = 20;
 
     //Variable for the touch event
     private float mLastTouchX;
@@ -24,6 +21,7 @@ public class StageTwo extends World {
         cam2 = new SpaceCamel(this);
         cam2.position =  new Point3F(180, 100, 0);
         this.addObject(cam2);
+        ENEMIES_NEEDED = 20;
     }
 
     @Override
@@ -88,13 +86,14 @@ public class StageTwo extends World {
     {
         float camBuffer = (float) Math.max((cam2.getWidth() * 2.5), 600.0);
         float yBuffer = (float) (height - (height * .80));
-        int randomX = Math.min(((int)(Math.random() * (width) + camBuffer)), width);
+        float range = (width - camBuffer) + 1;
+        int randomX = (int) ((Math.random() * range) + camBuffer );
         int randomY = (int) Math.max(((Math.random() * (height - yBuffer))), yBuffer);
         Point3F enemyPos = new Point3F(randomX, randomY, 0);
         EnemyS2 snake = new EnemyS2(this, enemyPos);
         this.addObject(snake);
 
-        spawnInterval = (int) (Math.random() * 6 + 2); //set a new interval for next enemy
+        spawnInterval = (int) ((Math.random() * 6) + 2); //set a new interval for next enemy
     }
 
     public void fireSpit(MotionEvent event) {
@@ -114,9 +113,7 @@ public class StageTwo extends World {
     {
         if (timeLeft == 0 && killCount < ENEMIES_NEEDED)
         {
-            // !! this isn't getting called for some reason !!
             this.enemies_left = ENEMIES_NEEDED - killCount;
-            System.out.println("Enemies left: " + enemies_left);
             this.listener.onGameOver(true);
         }
         else if(killCount >= ENEMIES_NEEDED)

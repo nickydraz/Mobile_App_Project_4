@@ -1,6 +1,7 @@
 package edu.noctrl.craig.generic;
 
 import android.graphics.Rect;
+import android.util.Log;
 
 /**
  * Created by Debra, Emily, and Nick on 5/14/16.
@@ -30,6 +31,8 @@ public class SpaceCamel extends GameSprite{
 
     @Override
     public void cull() {
+        w.enemies_left = w.ENEMIES_NEEDED - w.killCount;
+        Log.i("Testing", "Enemies left: " + w.enemies_left);
         w.listener.onGameOver(true);
 
     }

@@ -2,7 +2,6 @@ package edu.noctrl.craig.generic;
 
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.util.Log;
 
 /**
  * Created by Debra, Nick, And Emily on 5/15/16.
@@ -30,8 +29,7 @@ public class EnemyS2 extends GameSprite {
         this.substance = Collision.SolidAI;
         which = (int) (Math.random() + 0.5);
         birthday = w.totalElapsedTime;
-        randomInterval = (int)(Math.random() * 15) + 3;
-        Log.i("Random", String.valueOf(randomInterval));
+        randomInterval = (int)(Math.random() * 2) + 2;
     }
 
     @Override
@@ -56,7 +54,16 @@ public class EnemyS2 extends GameSprite {
 
     @Override
     public void cull() {
-
+        switch (which){
+            case 0:{
+                w.score += 100;
+                break;
+            }
+            case 1:{
+                w.score += 250;
+                break;
+            }
+        }
     }
 
     @Override

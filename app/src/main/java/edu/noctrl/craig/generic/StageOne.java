@@ -12,13 +12,13 @@ public class StageOne extends World{
 
     //Constants
     public static final double SPIT_SPEED_PERCENT = 3.0 / 2;
-    private final int ENEMIES_NEEDED = 10;
 
     public StageOne(StateListener listener, SoundManager sounds) {
         super(listener, sounds);
         cam = new SpaceCamel(this);
         cam.position =  new Point3F(180, 100, 0);
         this.addObject(cam);
+        ENEMIES_NEEDED = 10;
     }
 
     @Override
@@ -46,7 +46,8 @@ public class StageOne extends World{
     {
         float camBuffer = (float) Math.max((cam.getWidth() * 2.5), 600.0);
         float yBuffer = (float) (height - (height * .80));
-        int randomX = Math.min(((int)(Math.random() * (width) + camBuffer)), width);
+        float range = (width - camBuffer) + 1;
+        int randomX = (int) ((Math.random() * range) + camBuffer );
         int randomY = (int) Math.max(((Math.random() * (height - yBuffer))), yBuffer);
         Point3F enemyPos = new Point3F(randomX, randomY, 0);
         EnemyS1 snake = new EnemyS1(this, enemyPos);
