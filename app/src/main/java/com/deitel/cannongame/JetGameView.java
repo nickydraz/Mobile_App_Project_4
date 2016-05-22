@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     private GameThread gameThread; // controls the game loop
     private World world;
     private SoundManager soundManager;
+    private MediaPlayer track;
     private Activity activity; // to display Game Over dialog in GUI thread
     private boolean dialogIsDisplayed = false;
 
@@ -78,6 +80,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
         // register SurfaceHolder.Callback listener
         getHolder().addCallback(this);
         soundManager = new SoundManager(context);
+        track = MediaPlayer.create(context, R.raw.spacecamel_soundtrack);
         loadSprites();
     } // end CannonView constructor
 
@@ -102,6 +105,8 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
             this.setOnTouchListener(world);
             gameThread = new GameThread(holder, world); // create thread
             gameThread.start(); // start the game loop thread
+            track.setLooping(true);
+            track.start();
         }
     } // end method newGame
 
@@ -252,13 +257,16 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
 
     // stops the game; called by JetGameFragment's onPause method
     public void stopGame() {
-        if (gameThread != null)
+        if (gameThread != null) {
             gameThread.stopGame(); // tell thread to terminate
+            track.pause();
+        }
     }
 
     // releases resources; called by JetGameFragment's onDestroy method
     public void releaseResources() {
         soundManager.releaseResources();
+        track.stop();
     }
 
     // called when surface changes size

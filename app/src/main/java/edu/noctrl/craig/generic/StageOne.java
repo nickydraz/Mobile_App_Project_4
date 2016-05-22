@@ -67,6 +67,7 @@ public class StageOne extends World{
 
         //Fire the spit
         cam.shootSpit(angle);
+        soundManager.playSound(0);  //play spit sound
 
         //Increment total spit counter
         spitCount++;

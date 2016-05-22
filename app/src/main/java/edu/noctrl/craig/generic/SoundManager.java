@@ -3,14 +3,15 @@ package edu.noctrl.craig.generic;
 import android.content.Context;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
+import android.util.Log;
 
 import com.deitel.cannongame.R;
 
 public class SoundManager {
 	// constants and variables for managing sounds
-	public static int FIRE_ID = 0;
-	public static int JET_HIT = 1;
-	public static int ALIEN_HIT = 2;
+	public static int SPIT_ID = 0;
+	public static int CAMEL_HIT = 1;
+	public static int SNAKE_HIT = 2;
 	
 	
 	protected SoundPool soundPool; // plays sound effects
@@ -29,6 +30,7 @@ public class SoundManager {
 		soundPool = builder.build();
 		this.context = context;
 		initializeSounds();
+		Log.i("SoundMan" , "In Constructor");
 	}
 	
 	public void releaseResources(){
@@ -37,13 +39,15 @@ public class SoundManager {
 	}
 	
 	protected void initializeSounds(){
-        FIRE_ID = soundPool.load(context, R.raw.cannon_fire, 1);
-        JET_HIT = soundPool.load(context, R.raw.blocker_hit, 1);
-        ALIEN_HIT = soundPool.load(context, R.raw.target_hit, 1);
+		Log.i("SoundMan" , "I am initializing sound");
+		SPIT_ID = soundPool.load(context, R.raw.spit, 1);
+        CAMEL_HIT = soundPool.load(context, R.raw.camel, 1);
+        SNAKE_HIT = soundPool.load(context, R.raw.spit, 1);
 	}
 	
 	public void playSound(int sound){
 		soundPool.play(sound, 1, 1, 1, 0, 1f);
+		Log.i("SoundMan" , "I am playing sound: " + sound);
 	}
 	
 }

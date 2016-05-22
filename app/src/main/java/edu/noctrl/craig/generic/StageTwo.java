@@ -102,7 +102,7 @@ public class StageTwo extends World {
 
         //Fire the spit
         cam2.shootSpit(angle);
-
+        soundManager.playSound(0);  //play spit sound
         //Increment spit counter
         spitCount++;
     }

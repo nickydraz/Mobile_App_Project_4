@@ -37,7 +37,7 @@ public class World implements View.OnTouchListener {
     public int width;
     public int height;
     public StateListener listener;
-    private SoundManager soundManager;
+    public SoundManager soundManager;
     public Point3F worldScale = Point3F.identity();
     public Timer timer;
     public TimerTask task;
