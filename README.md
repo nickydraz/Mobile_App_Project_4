@@ -4,9 +4,6 @@ Repo for the third project of CSC 410
 Project 3 will be your first step into mobile game development. 
 
 <h2>Items to Complete:</h2>
-- Multiple types of enemies  
-  - Stage 2: Enemies move randomly
-- Notes:  
   - Required sound actions:  
     - Player/Enemy fires  
     - Player Hit  
@@ -22,7 +19,7 @@ Project 3 will be your first step into mobile game development.
   - Stage 2: Players can drag the avatar and tap to fire
 - Multiple types of enemies  
   - Stage 1: Enemies spawn in random locations at random intervals and remain stationary 
-  - Stage 2: Enemies spawn as in Stage 1. Enemies fire at player.
+  - Stage 2: Enemies spawn as in Stage 1. Enemies fire at player. Enemies move randomly.
 - Multiple Stages  
   - Stage 1: Player has X time to kill enemies on the screen. Must kill at least 10 to continue to stage 2  
   - Stage 2: Player must kill all enemies on the screen without dying 
