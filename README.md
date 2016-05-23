@@ -2,15 +2,12 @@
 Repo for the third project of CSC 410
 
 Project 3 will be your first step into mobile game development. 
+- You will be graded on how well the game performs and how enjoyable it is!  
 
 <h2>Items to Complete:</h2>
   - Required sound actions:  
-    - Player/Enemy fires  
-    - Player Hit  
+    - Enemy fires  
     - Enemy Hit  
-    - Background Music on Loop (may use sound manager with small files or media player)  
-  - You will be graded on how well the game performs and how enjoyable it is!  
-
 
 <h2>Completed Steps</h2>
 - Player
@@ -35,7 +32,11 @@ Project 3 will be your first step into mobile game development.
   - You may use simple hit detection object.dest.contains(object.position)
   - Limit the number of player projectiles on the screen at a given time 
   - Must have multiple enemy graphics
-  - You must calculate and display a score based on the statistics captured during play (weights are up to you, but must be logical) 
+  - You must calculate and display a score based on the statistics captured during play (weights are up to you, but must be logical)
+- Sounds:
+  - Player fire/kill
+  - Background music
+
 <h2>Camel Sprite Coordinates</h2>
 - Sprite 1 
   - (0, 0) (77, 0)
