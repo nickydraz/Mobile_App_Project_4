@@ -80,7 +80,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
         // register SurfaceHolder.Callback listener
         getHolder().addCallback(this);
         soundManager = new SoundManager(context);
-        track = MediaPlayer.create(context, R.raw.spacecamel_soundtrack);
+        track = MediaPlayer.create(context, R.raw.spacecamel_backtrack);
         loadSprites();
     } // end CannonView constructor
 
