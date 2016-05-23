@@ -32,7 +32,7 @@ public class SpaceCamel extends GameSprite{
     @Override
     public void cull() {
         w.enemies_left = w.ENEMIES_NEEDED - w.killCount;
-        Log.i("Testing", "Enemies left: " + w.enemies_left);
+        w.soundManager.playSound(1);  //play spit sound
         w.listener.onGameOver(true);
 
     }
