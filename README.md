@@ -5,7 +5,6 @@
   - Stage Selection
   - High Scores: Local
   - High Scores: Global
-  - About
 - Track the High Scores
   - Store local high scores in an SQLite table
   - Submit high scores to http://craiginsdev.com/highscore/scores.php using an http post (week 8 thursday notes)
@@ -22,3 +21,7 @@
   - Enemies move towards the players
   - Stage continues until the player dies (gets hit by the enemy)
   - Score continually increases until the player dies
+
+<h2>Completed</h2>
+- Add a menu with the following items
+  - About
