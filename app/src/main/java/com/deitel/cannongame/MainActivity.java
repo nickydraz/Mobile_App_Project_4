@@ -3,7 +3,12 @@
 package com.deitel.cannongame;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class MainActivity extends Activity {
     // called when the app first launches
@@ -11,6 +16,56 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); // call super's onCreate method
         setContentView(R.layout.activity_main); // inflate the layout
+    }
+
+    //Methods for Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater mi = getMenuInflater();
+        mi.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override //what to do when the menu item is selected
+    public boolean onOptionsItemSelected(MenuItem mi){
+        switch (mi.getItemId()){
+            case R.id.select_stage:
+            {
+                return true;
+            }
+            case R.id.local_high_scores:
+            {
+                return true;
+            }
+            case R.id.global_high_scores:
+            {
+                return true;
+            }
+            case R.id.about:
+            {
+                aboutDialog();
+                return true;
+            }
+            default:
+            {
+                return super.onOptionsItemSelected(mi);
+            }
+        }
+    }
+
+    public void aboutDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage(R.string.aboutText).
+                setTitle(R.string.aboutTitle).
+                setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        //do nothing
+                    }
+                });
+        builder.show();
     }
 } // end class MainActivity
 

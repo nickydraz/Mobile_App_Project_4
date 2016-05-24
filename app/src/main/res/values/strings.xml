@@ -8,5 +8,10 @@
     <string name="lose">Game Over!</string>
     <string name="time_remaining_format">Time remaining: %.1f seconds</string>
     <string name="next">Next Level</string>
+    <string name="ok">OK</string>
+    <string name="aboutTitle">About SC vs SS</string>
+    <string name="aboutText">App written by Nicholas Drazenovic, Emily Huizenga, and Debra Jensen.\n\n
+    Background music by Ronnie Lyall.\n\n
+    Sound effects from Youtube</string>
 
 </resources>
