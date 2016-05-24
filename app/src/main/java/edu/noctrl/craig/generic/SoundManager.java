@@ -12,6 +12,7 @@ public class SoundManager {
 	public static int SPIT_ID = 0;
 	public static int CAMEL_HIT = 1;
 	public static int SNAKE_HIT = 2;
+	public static int SNAKE_HISS = 3;
 
 	private boolean loaded = false;
 	
@@ -48,7 +49,8 @@ public class SoundManager {
 		});
 		SPIT_ID = soundPool.load(context, R.raw.spit, 1);
         CAMEL_HIT = soundPool.load(context, R.raw.camel, 1);
-        //SNAKE_HIT = soundPool.load(context, R.raw.spit, 1);
+		SNAKE_HISS = soundPool.load(context, R.raw.snake_hiss, 1);
+        SNAKE_HIT = soundPool.load(context, R.raw.snake_death, 1);
 
 	}
 	
@@ -66,6 +68,10 @@ public class SoundManager {
 				}
 				case 2: {
 					soundPool.play(SNAKE_HIT, 1, 1, 1, 0, 1f);
+					break;
+				}
+				case 3: {
+					soundPool.play(SNAKE_HISS, 1, 1, 1, 0, 1f);
 					break;
 				}
 			}

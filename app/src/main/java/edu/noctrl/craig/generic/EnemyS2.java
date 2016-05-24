@@ -66,6 +66,7 @@ public class EnemyS2 extends GameSprite {
 
     @Override
     public void cull() {
+        w.soundManager.playSound(2);
         switch (which){
             case 0:{
                 w.score += 100;
@@ -122,6 +123,9 @@ public class EnemyS2 extends GameSprite {
 
     //Method for attacking the camel.
     public void shootVenom() {
+        //Snake hissing sound
+        w.soundManager.playSound(3);
+
         Point camelPoint = new Point((int) w.cam2.position.X, (int) w.cam2.position.Y);
         double angle = 0;
 

@@ -65,13 +65,8 @@ public class StageOne extends World{
 
         angle = Math.atan2(touchPoint.x, centerMinusY);
 
-        soundManager.playSound(0);  //play spit sound
         //Fire the spit
         cam.shootSpit(angle);
-
-        //Increment total spit counter
-        spitCount++;
-
     }
 
     @Override

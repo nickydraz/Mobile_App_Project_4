@@ -30,6 +30,7 @@ public class EnemyS1 extends GameSprite {
 
     @Override
     public void cull() {
+        w.soundManager.playSound(2);
         w.score += 100;
     }
 

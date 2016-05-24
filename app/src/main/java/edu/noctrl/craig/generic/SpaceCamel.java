@@ -1,7 +1,6 @@
 package edu.noctrl.craig.generic;
 
 import android.graphics.Rect;
-import android.util.Log;
 
 /**
  * Created by Debra, Emily, and Nick on 5/14/16.
@@ -32,7 +31,7 @@ public class SpaceCamel extends GameSprite{
     @Override
     public void cull() {
         w.enemies_left = w.ENEMIES_NEEDED - w.killCount;
-        w.soundManager.playSound(1);  //play spit sound
+        w.soundManager.playSound(1);  //play death sound
         w.listener.onGameOver(true);
 
     }
@@ -40,6 +39,12 @@ public class SpaceCamel extends GameSprite{
     //Method for spitting at the enemies.
     public void shootSpit(double angle) {
         if(w.spitLimit < 4) {
+
+            w.soundManager.playSound(0);  //play spit sound
+
+
+            //Increment total spit counter
+            w.spitCount++;
 
             //calculate the spit velocity's X component
             float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT * Math.sin(angle));
