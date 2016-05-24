@@ -5,9 +5,7 @@ Project 3 will be your first step into mobile game development.
 - You will be graded on how well the game performs and how enjoyable it is!  
 
 <h2>Items to Complete:</h2>
-  - Required sound actions:  
-    - Enemy fires  
-    - Enemy Hit  
+- All done!
 
 <h2>Completed Steps</h2>
 - Player
@@ -36,6 +34,8 @@ Project 3 will be your first step into mobile game development.
 - Sounds:
   - Player fire/kill
   - Background music
+  - Enemy fires  
+  - Enemy Hit  
 
 <h2>Camel Sprite Coordinates</h2>
 - Sprite 1 
