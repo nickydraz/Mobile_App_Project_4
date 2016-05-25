@@ -30,6 +30,9 @@ public class MainActivity extends Activity {
 
     @Override //what to do when the menu item is selected
     public boolean onOptionsItemSelected(MenuItem mi){
+
+        JetGameView jetV = (JetGameView) findViewById(R.id.cannonView);
+
         switch (mi.getItemId()){
             case R.id.select_stage:
             {
@@ -45,7 +48,8 @@ public class MainActivity extends Activity {
             }
             case R.id.about:
             {
-                aboutDialog();
+                jetV.getGameThread().pauseGame();
+                aboutDialog(jetV);
                 return true;
             }
             default:
@@ -55,7 +59,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void aboutDialog()
+    public void aboutDialog(final JetGameView jetV)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setMessage(R.string.aboutText).
@@ -63,6 +67,7 @@ public class MainActivity extends Activity {
                 setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         //do nothing
+                        jetV.getGameThread().resumeGame();
                     }
                 });
         builder.show();

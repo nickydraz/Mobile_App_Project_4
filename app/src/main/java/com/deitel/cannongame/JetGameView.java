@@ -24,6 +24,7 @@ import java.io.InputStream;
 import edu.noctrl.craig.generic.GameSprite;
 import edu.noctrl.craig.generic.SoundManager;
 import edu.noctrl.craig.generic.StageOne;
+import edu.noctrl.craig.generic.StageThree;
 import edu.noctrl.craig.generic.StageTwo;
 import edu.noctrl.craig.generic.World;
 
@@ -98,7 +99,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     public void newGame(SurfaceHolder holder) {
         if (gameOver) // starting a new game after the last game ended
         {
-            this.score =0;
+            this.score = 0;
             gameOver = false;
             world = new StageOne(this, soundManager);
             world.updateSize(screenWidth, screenHeight);
@@ -160,7 +161,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
 
 
     // display an AlertDialog when the player beats a level
-    private void showGameStageWinDialog(final int messageId) {
+    private void showGameStageWinDialog(final int messageId, final int nextStage) {
         // DialogFragment to display quiz stats and start new quiz
         final DialogFragment gameResult =
                 new DialogFragment() {
@@ -186,7 +187,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialogIsDisplayed = false;
-                                        setStage(getHolder()); // set up next Stage
+                                        setStage(getHolder(), nextStage); // set up next Stage
                                     }
                                 } // end anonymous inner class
                         ); // end call to setPositiveButton
@@ -209,7 +210,6 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
 
     // display an AlertDialog when the player beats a level
     private void showGameWinDialog(final int messageId) {
-        // DialogFragment to display quiz stats and start new quiz
         final DialogFragment gameResult =
                 new DialogFragment() {
                     // create an AlertDialog and return it
@@ -310,11 +310,11 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     }
 
     @Override
-    public void onNextStage(boolean next)
+    public void onNextStage(boolean next, int nextStage)
     {
         score += world.score;
         gameThread.stopGame(); //stop game thread
-        showGameStageWinDialog(R.string.win);
+        showGameStageWinDialog(R.string.win, nextStage);
 
     }
 
@@ -326,13 +326,22 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
         gameThread.stopGame();
         showGameWinDialog(R.string.win);
     }
-    public void setStage(SurfaceHolder holder)
+    public void setStage(SurfaceHolder holder, int stage)
     {
-        world = new StageTwo(this, soundManager);
+        if(stage == 2)
+            world = new StageTwo(this, soundManager);
+        else if(stage == 3)
+            world = new StageThree(this, soundManager);
+
         world.score = score;
         world.updateSize(screenWidth, screenHeight);
         this.setOnTouchListener(world);
         gameThread = new GameThread(holder, world); // create thread
         gameThread.start(); // start the game loop thread
+    }
+
+    public GameThread getGameThread()
+    {
+        return gameThread;
     }
 }

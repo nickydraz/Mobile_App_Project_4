@@ -13,6 +13,7 @@ public class GameThread extends Thread {
     private SurfaceHolder surfaceHolder; // for manipulating canvas
     private World world;
     private boolean threadIsRunning = true; // running by default
+    private volatile boolean pauseThread = false;
 
     public GameThread(SurfaceHolder holder, World world) {
         surfaceHolder = holder;
@@ -30,12 +31,31 @@ public class GameThread extends Thread {
         threadIsRunning = false;
     }
 
+    public void pauseGame()
+    {
+        pauseThread = true;
+    }
+
+    public void resumeGame()
+    {
+        pauseThread = false;
+    }
+
     // controls the game loop
     @Override
     public void run() {
         Canvas canvas = null; // used for drawing
         long previousFrameTime = System.currentTimeMillis();
         while (threadIsRunning) {
+            if(pauseThread)
+            {
+                try {
+                    Thread.sleep(33);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                continue;
+            }
             try {
                 // get Canvas for exclusive drawing from this thread
                 canvas = surfaceHolder.lockCanvas(null);
@@ -62,4 +82,9 @@ public class GameThread extends Thread {
             }
         } // end while
     } // end method run
+
+    public void setRunningBool (boolean running)
+    {
+        threadIsRunning = running;
+    }
 }
