@@ -13,5 +13,5 @@
     <string name="aboutText">App written by Nicholas Drazenovic, Emily Huizenga, and Debra Jensen.\n\n
     Background music by Ronnie Lyall.\n\n
     Sound effects from Youtube</string>
-
+    <string name="stageTitle">Select Stage</string>
 </resources>

@@ -310,12 +310,16 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     }
 
     @Override
-    public void onNextStage(boolean next, int nextStage)
+    public void onNextStage(boolean showDialog, int nextStage)
     {
         score += world.score;
         gameThread.stopGame(); //stop game thread
-        showGameStageWinDialog(R.string.win, nextStage);
 
+        //If stage was cleared, show win dialog
+        if (showDialog)
+            showGameStageWinDialog(R.string.win, nextStage);
+        else //stage was manually selected, don't show win dialog
+            setStage(getHolder(), nextStage);
     }
 
     @Override
@@ -332,6 +336,9 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
             world = new StageTwo(this, soundManager);
         else if(stage == 3)
             world = new StageThree(this, soundManager);
+        else {
+            world = new StageOne(this, soundManager);
+        }
 
         world.score = score;
         world.updateSize(screenWidth, screenHeight);

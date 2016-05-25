@@ -11,6 +11,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class MainActivity extends Activity {
+
+    //Set array for stage selection
+    String[] stages = {"1", "2", "3"};
+
     // called when the app first launches
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,11 +35,14 @@ public class MainActivity extends Activity {
     @Override //what to do when the menu item is selected
     public boolean onOptionsItemSelected(MenuItem mi){
 
+        //Pause the game when a menu item is selected
         JetGameView jetV = (JetGameView) findViewById(R.id.cannonView);
+        jetV.getGameThread().pauseGame();
 
         switch (mi.getItemId()){
             case R.id.select_stage:
             {
+                stageSelectDialog(jetV);
                 return true;
             }
             case R.id.local_high_scores:
@@ -48,7 +55,6 @@ public class MainActivity extends Activity {
             }
             case R.id.about:
             {
-                jetV.getGameThread().pauseGame();
                 aboutDialog(jetV);
                 return true;
             }
@@ -66,8 +72,21 @@ public class MainActivity extends Activity {
                 setTitle(R.string.aboutTitle).
                 setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
-                        //do nothing
                         jetV.getGameThread().resumeGame();
+                    }
+                });
+        builder.show();
+    }
+
+    public void stageSelectDialog(final JetGameView jetV)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.
+                setTitle(R.string.stageTitle).
+                setItems(stages, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        jetV.onNextStage(false, Integer.parseInt(stages[which]));
                     }
                 });
         builder.show();
