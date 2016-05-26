@@ -16,12 +16,13 @@
     - Will return a JSON array like:
     - [{"game":"harry","name":"BAC","score":"29916","datetime":"Sun May 22 2016 16:56:55 GMT-0500 (Central Daylight Time)"},{"game":"halo","name":"BAC","score":"17997","datetime":"Sun May 22 2016 17:00:02 GMT-0500 (Central Daylight Time)"},{"game":"awesome game","name":"BAC","score":"14742","datetime":"Sun May 22 2016 17:31:59 GMT-0500 (Central Daylight Time)"},{"game":"ff6","name":"BAC","score":"14742","datetime":"Sun May 22 2016 17:31:59 GMT-0500 (Central Daylight Time)"}]
     - Manually check high scores here: http://craiginsdev.com/highscore/listHighScores.html
-- Add a 3rd stage to the game
+- Third Stage:
   - Enemies move towards the players
-  - Stage continues until the player dies (gets hit by the enemy)
-  - Score continually increases until the player dies
 
 <h2>Completed</h2>
 - Add a menu with the following items
   - Stage Selection
   - About
+- Add a 3rd stage to the game
+  - Stage continues until the player dies (gets hit by the enemy)
+  - Score continually increases until the player dies
