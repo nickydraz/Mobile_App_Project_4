@@ -15,11 +15,6 @@ public class EnemyS3 extends GameSprite {
     StageThree w;
 
     int which;
-    private int randomX;
-    private int randomY;
-
-    private int numUpdates = 30;
-
 
     public EnemyS3(StageThree theWorld, Point3F pos) {
         super(theWorld);
@@ -29,10 +24,7 @@ public class EnemyS3 extends GameSprite {
         this.collidesWith = Collision.SolidPlayer;
         this.substance = Collision.SolidAI;
         which = (int) (Math.random() + 0.5);
-        randomX =  (int)this.position.X;
-        randomY =  (int)this.position.Y;
         speed = 100;
-
     }
 
     @Override
@@ -89,55 +81,6 @@ public class EnemyS3 extends GameSprite {
         float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT * -Math.sin(angle));
 
         //Calculate the snake velocity's Y component
-        float velocityY = (float) (StageOne.SPIT_SPEED_PERCENT * Math.cos(angle));
-
-        this.baseVelocity.X = velocityX;
-        this.baseVelocity.Y = velocityY;
-        this.rotationAngle = (float) angle;
-
-        this.updateVelocity();
-    }
-
-    //Method for attacking the camel.
-   /* public void shootVenom() {
-        //Snake hissing sound
-        w.soundManager.playSound(3);
-
-        Point camelPoint = new Point((int) w.cam3.position.X, (int) w.cam3.position.Y);
-        double angle = 0;
-
-        angle = Math.atan2(this.position.X - camelPoint.x, camelPoint.y - this.position.Y);
-        //calculate the venom velocity's X component
-        float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT * -Math.sin(angle));
-
-        //Calculate the venom velocity's Y component
-        float velocityY = (float) (StageOne.SPIT_SPEED_PERCENT * Math.cos(angle));
-
-        //Make a venom object and position it
-        Venom venom = new Venom(w, velocityX, velocityY, this, (float) angle);
-        w.addObject(venom);
-
-    }*/
-
-    public void setVelocity()
-    {
-        float camBuffer = (float) Math.max((w.cam3.getWidth() * 2.5), 600.0);
-        float yBuffer = (float) (w.height - (w.height * .80));
-        float range = (w.width - camBuffer) + 1;
-        randomX = (int) ((Math.random() * range) + camBuffer );
-        randomY = (int) Math.max(((Math.random() * (w.height - yBuffer))), yBuffer);
-
-        Point randPoint = new Point( randomX, randomY);
-
-        double centerMinusY = (w.height / 2 - randPoint.y);
-
-        double angle = 0;
-
-        angle = Math.atan2(this.position.X - randPoint.x, randPoint.y - this.position.Y);
-        //calculate the venom velocity's X component
-        float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT * -Math.sin(angle));
-
-        //Calculate the venom velocity's Y component
         float velocityY = (float) (StageOne.SPIT_SPEED_PERCENT * Math.cos(angle));
 
         this.baseVelocity.X = velocityX;

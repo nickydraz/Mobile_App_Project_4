@@ -19,17 +19,15 @@ public class StageThree extends World{
 
     public StageThree(StateListener listener, SoundManager sounds) {
         super(listener, sounds);
-        this.suddenDeath=true;
+        this.suddenDeath = true;
         cam3 = new SpaceCamel(this);
-        cam3.position =  new Point3F(180, 100, 0);
+        cam3.position = new Point3F(180, 100, 0);
         this.addObject(cam3);
     }
     @Override
     public boolean onTouch(View v, MotionEvent event)
     {
-
         int action = event.getAction();
-
 
         //If touching to the right of the camel, then spit at the enemies
         if ((action == MotionEvent.ACTION_DOWN) && (event.getX() > (cam3.getWidth() * 2.5)))
@@ -77,6 +75,7 @@ public class StageThree extends World{
     public void initializeGame()
     {
         cam3.setStartPt();
+        spawnEnemy();
         spawnEnemy();
         spawnEnemy();
     }

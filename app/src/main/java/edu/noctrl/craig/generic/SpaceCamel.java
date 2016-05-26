@@ -30,7 +30,7 @@ public class SpaceCamel extends GameSprite{
 
     @Override
     public void cull() {
-        w.enemies_left = w.ENEMIES_NEEDED - w.killCount;
+        if(!w.suddenDeath) w.enemies_left = w.ENEMIES_NEEDED - w.killCount;
         w.soundManager.playSound(1);  //play death sound
         w.listener.onGameOver(true);
 
