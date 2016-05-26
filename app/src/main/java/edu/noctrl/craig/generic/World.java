@@ -70,6 +70,9 @@ public class World implements View.OnTouchListener {
             public void run() {
                 // task to run goes here
                 timeLeft -= 1;
+                if(suddenDeath){
+                    score += 10;
+                }
 
             }
         };
@@ -125,7 +128,7 @@ public class World implements View.OnTouchListener {
             textPaint.setTextSize(60);
             if(suddenDeath)
             {
-                canvas.drawText("", 10, 55, textPaint);
+                canvas.drawText("Score: " + score, 10, 55, textPaint);
             }
             else
                 canvas.drawText("Time Remaining: " + timeLeft + " seconds", 10, 55, textPaint);

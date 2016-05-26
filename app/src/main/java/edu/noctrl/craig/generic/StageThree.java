@@ -19,9 +19,11 @@ public class StageThree extends World{
 
     public StageThree(StateListener listener, SoundManager sounds) {
         super(listener, sounds);
+        this.suddenDeath=true;
         cam3 = new SpaceCamel(this);
         cam3.position =  new Point3F(180, 100, 0);
         this.addObject(cam3);
+
     }
     @Override
     public boolean onTouch(View v, MotionEvent event)
