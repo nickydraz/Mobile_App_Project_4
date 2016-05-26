@@ -1,9 +1,6 @@
 # Project 4: Finishing Touches
 
 <h2>Things To Complete</h2>
-- Add a menu with the following items
-  - High Scores: Local
-  - High Scores: Global
 - Track the High Scores
   - Store local high scores in an SQLite table
   - Submit high scores to http://craiginsdev.com/highscore/scores.php using an http post (week 8 thursday notes)
@@ -20,6 +17,7 @@
 <h2>Completed</h2>
 - Add a menu with the following items
   - Stage Selection
+  - Global and Local high scores
   - About
 - Add a 3rd stage to the game
   - Stage continues until the player dies (gets hit by the enemy)
