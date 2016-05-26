@@ -13,14 +13,16 @@ import android.view.MenuItem;
 public class MainActivity extends Activity {
 
     //Set array for stage selection
-    String[] stages = {Integer.toString(R.string.stage1),
-                        Integer.toString(R.string.stage2), Integer.toString(R.string.stage3)};
+    String[] stages = new String[3];
 
     // called when the app first launches
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); // call super's onCreate method
         setContentView(R.layout.activity_main); // inflate the layout
+        stages[0] = getResources().getString(R.string.stage1);
+        stages[1] = getResources().getString(R.string.stage2);
+        stages[2] = getResources().getString(R.string.stage3);
     }
 
     //Methods for Menu
@@ -87,7 +89,7 @@ public class MainActivity extends Activity {
                 setItems(stages, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        jetV.onNextStage(false, Integer.parseInt(stages[which]));
+                        jetV.onNextStage(false, which + 1);
                     }
                 });
         builder.show();

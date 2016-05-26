@@ -18,6 +18,7 @@ public class World implements View.OnTouchListener {
     public int ENEMIES_NEEDED;
     public static Object GUI_LOCKER = new Object();
     public static Resources resources;
+    public boolean suddenDeath=false;
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
@@ -122,7 +123,12 @@ public class World implements View.OnTouchListener {
             Paint textPaint = new Paint();
             textPaint.setColor(Color.WHITE);
             textPaint.setTextSize(60);
-            canvas.drawText("Time Remaining: " + timeLeft + " seconds", 10, 55, textPaint);
+            if(suddenDeath)
+            {
+                canvas.drawText("", 10, 55, textPaint);
+            }
+            else
+                canvas.drawText("Time Remaining: " + timeLeft + " seconds", 10, 55, textPaint);
             for(GameObject obj : objects){
                 obj.draw(canvas);
 
