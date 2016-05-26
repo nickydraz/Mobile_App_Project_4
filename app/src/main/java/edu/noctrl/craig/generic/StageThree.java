@@ -5,7 +5,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * Created by debra on 5/24/16.
+ * Created by Debra, Nick, and Emily on 5/24/16.
  */
 public class StageThree extends World{
 
@@ -23,7 +23,6 @@ public class StageThree extends World{
         cam3 = new SpaceCamel(this);
         cam3.position =  new Point3F(180, 100, 0);
         this.addObject(cam3);
-
     }
     @Override
     public boolean onTouch(View v, MotionEvent event)
@@ -96,6 +95,7 @@ public class StageThree extends World{
         spawnInterval = (int) ((Math.random() * 6) + 2); //set a new interval for next enemy
     }
 
+    //calculate the spit angle and shoot at the enemy
     public void fireSpit(MotionEvent event) {
         Point touchPoint = new Point((int) event.getX(), (int) event.getY());
 
@@ -108,7 +108,7 @@ public class StageThree extends World{
     @Override
     public void isGameOver()
     {
-
-
+        //No time limit because sudden death
+        //only way game will end is if camel is hit by snake
     }
 }

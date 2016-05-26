@@ -42,7 +42,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     // variables for the game loop and tracking statistics
     private boolean gameOver; // is the game over?
 
-    //Variable for the score
+    //Variable for the total score
     private int score = 0;
 
     private int screenWidth;

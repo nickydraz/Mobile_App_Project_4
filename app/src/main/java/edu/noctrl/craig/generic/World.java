@@ -12,13 +12,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Created by craig_000 on 5/9/2015.
+ * Created by craig_000 on 5/9/2015. Modified by Nick, Debra, and Emily Spring 2016
  */
 public class World implements View.OnTouchListener {
     public int ENEMIES_NEEDED;
     public static Object GUI_LOCKER = new Object();
     public static Resources resources;
-    public boolean suddenDeath=false;
+    public boolean suddenDeath = false; //is this the sudden death round?
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
@@ -98,7 +98,7 @@ public class World implements View.OnTouchListener {
         worldScale.X = width / TARGET_WIDTH;
         worldScale.Y = width / TARGET_WIDTH;
         PIXELS_PER_METER = worldScale.Y * TARGET_PIXELS_PER_METER;
-        if(objects.size()==0){
+        if(objects.size() == 0){
             initialize();
         }
     }
@@ -134,7 +134,6 @@ public class World implements View.OnTouchListener {
                 canvas.drawText("Time Remaining: " + timeLeft + " seconds", 10, 55, textPaint);
             for(GameObject obj : objects){
                 obj.draw(canvas);
-
             }
         }
     }
@@ -166,15 +165,15 @@ public class World implements View.OnTouchListener {
 
     public void initializeGame()
     {
-
+        //method to be overridden in stage classes
     }
 
     public void spawnEnemy()
     {
-        System.out.println("Bad Method");
+        //method to be overridden
     }
 
-    //method to be overriden in each stage to check if the end game requirements have been handled
+    //method to be overridden in each stage to check if the end game requirements have been handled
     //called in update mode
     public void isGameOver()
     {

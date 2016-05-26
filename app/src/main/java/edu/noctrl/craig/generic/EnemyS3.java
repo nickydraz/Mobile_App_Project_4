@@ -15,11 +15,6 @@ public class EnemyS3 extends GameSprite {
     StageThree w;
 
     int which;
-    boolean timeToAttack = false;
-    boolean timeToMove = false;
-    private double birthday = 0;
-    private int randomIntervalSpit = 3;
-    private int randomIntervalMove = 3;
     private int randomX;
     private int randomY;
 
@@ -34,9 +29,6 @@ public class EnemyS3 extends GameSprite {
         this.collidesWith = Collision.SolidPlayer;
         this.substance = Collision.SolidAI;
         which = (int) (Math.random() + 0.5);
-        birthday = w.totalElapsedTime;
-        randomIntervalSpit = (int)(Math.random() * 6) + 2;
-        randomIntervalMove = (int)(Math.random()*4) + 2;
         randomX =  (int)this.position.X;
         randomY =  (int)this.position.Y;
         speed = 100;
@@ -66,13 +58,14 @@ public class EnemyS3 extends GameSprite {
     @Override
     public void cull() {
         w.soundManager.playSound(2);
+        //increment the score if the player hits a snake
         switch (which){
             case 0:{
-                w.score += 100;
+                w.score += 150;
                 break;
             }
             case 1:{
-                w.score += 250;
+                w.score += 300;
                 break;
             }
         }
@@ -82,24 +75,27 @@ public class EnemyS3 extends GameSprite {
     public void collision(GameObject other) {
         other.kill();
         w.killCount++; //increment num kills
-        w.timeLeft += 5; //give player more time
     }
 
     @Override
     public void update(float interval){
         position.add(velocity.clone().mult(interval));
-        //Random fire
-       /* if (((int)(w.totalElapsedTime - birthday)) % randomIntervalSpit == 0) {
-            if(timeToAttack) {
-                shootVenom();
-            }
-            timeToAttack = false;
-        }
-        else
-            timeToAttack = true;*/
-
        //Move toward the camel
+        Point camelPoint = new Point((int) w.cam3.position.X, (int) w.cam3.position.Y);
+        double angle = 0;
 
+        angle = Math.atan2(this.position.X - camelPoint.x, camelPoint.y - this.position.Y);
+        //calculate the snake velocity's X component
+        float velocityX = (float) (StageOne.SPIT_SPEED_PERCENT * -Math.sin(angle));
+
+        //Calculate the snake velocity's Y component
+        float velocityY = (float) (StageOne.SPIT_SPEED_PERCENT * Math.cos(angle));
+
+        this.baseVelocity.X = velocityX;
+        this.baseVelocity.Y = velocityY;
+        this.rotationAngle = (float) angle;
+
+        this.updateVelocity();
     }
 
     //Method for attacking the camel.
@@ -149,13 +145,5 @@ public class EnemyS3 extends GameSprite {
         this.rotationAngle = (float) angle;
 
         this.updateVelocity();
-    }
-
-    private boolean checkPos()
-    {
-        if(this.position.X == randomX && this.position.Y == randomY)
-            return true;
-        else
-            return false;
     }
 }
