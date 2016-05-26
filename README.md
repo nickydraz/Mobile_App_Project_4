@@ -2,7 +2,6 @@
 
 <h2>Things To Complete</h2>
 - Add a menu with the following items
-  - Stage Selection
   - High Scores: Local
   - High Scores: Global
 - Track the High Scores
@@ -24,4 +23,5 @@
 
 <h2>Completed</h2>
 - Add a menu with the following items
+  - Stage Selection
   - About

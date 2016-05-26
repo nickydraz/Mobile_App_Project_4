@@ -14,4 +14,8 @@
     Background music by Ronnie Lyall.\n\n
     Sound effects from Youtube</string>
     <string name="stageTitle">Select Stage</string>
+    <string name="stage1">Stage One</string>
+    <string name="stage2">Stage Two</string>
+    <string name="stage3">Stage Three</string>
+
 </resources>

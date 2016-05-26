@@ -13,7 +13,8 @@ import android.view.MenuItem;
 public class MainActivity extends Activity {
 
     //Set array for stage selection
-    String[] stages = {"1", "2", "3"};
+    String[] stages = {Integer.toString(R.string.stage1),
+                        Integer.toString(R.string.stage2), Integer.toString(R.string.stage3)};
 
     // called when the app first launches
     @Override
