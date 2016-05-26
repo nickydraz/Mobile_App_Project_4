@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Space Camels vs. Space Snakes</string>
+    <string name="app_name">Deserted Space</string>
     <string name="results_format">Shots fired: %1$d\nKills: %2$d\nRemaining: %3$d\nScore: %4$d\nTotal time: %5$.1f</string>
     <string name="reset_game">Reset Game</string>
     <string name="win">You win!</string>
