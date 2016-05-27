@@ -2,7 +2,6 @@
 
 <h2>Things To Complete</h2>
 - Track the High Scores
-  - Store local high scores in an SQLite table
   - Submit high scores to http://craiginsdev.com/highscore/scores.php using an http post (week 8 thursday notes)
   - You will need to submit the following:
     - game=yourgame
@@ -23,3 +22,5 @@
   - Stage continues until the player dies (gets hit by the enemy)
   - Score continually increases until the player dies
   - Enemies move towards the player
+- Track the High Scores 
+  - Store local high scores in an SQLite table
