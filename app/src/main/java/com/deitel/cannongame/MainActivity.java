@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import java.util.List;
+
 public class MainActivity extends Activity {
 
     //Set array for stage selection
@@ -50,6 +52,7 @@ public class MainActivity extends Activity {
             }
             case R.id.local_high_scores:
             {
+                localScoresDialog(jetV);
                 return true;
             }
             case R.id.global_high_scores:
@@ -90,6 +93,27 @@ public class MainActivity extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         jetV.onNextStage(false, which + 1);
+                    }
+                });
+        builder.show();
+    }
+
+    public void localScoresDialog(final JetGameView jetV)
+    {
+        List<Object[]> records = jetV.helper.getRecords();
+        String[] highScores = new String[Math.min(records.size(), 5)];
+
+        for(int i=0; i<highScores.length; i++){
+            highScores[i] = "Name: " + records.get(i)[1] + " Score: " + records.get(i)[2];
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.
+                setTitle(R.string.highScoreTitle).
+                setItems(highScores, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        jetV.getGameThread().resumeGame();
                     }
                 });
         builder.show();

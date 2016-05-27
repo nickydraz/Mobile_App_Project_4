@@ -9,19 +9,24 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.AssetManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.EditText;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 
 import edu.noctrl.craig.generic.GameSprite;
+import edu.noctrl.craig.generic.ScoreDBHelper;
 import edu.noctrl.craig.generic.SoundManager;
 import edu.noctrl.craig.generic.StageOne;
 import edu.noctrl.craig.generic.StageThree;
@@ -47,6 +52,8 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
 
     private int screenWidth;
     private int screenHeight;
+
+    ScoreDBHelper helper;
 
     //http://stackoverflow.com/questions/18973550/load-images-from-assets-folder
     private Bitmap getBitmapFromAsset(String strName)
@@ -82,6 +89,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
         getHolder().addCallback(this);
         soundManager = new SoundManager(context);
         track = MediaPlayer.create(context, R.raw.spacecamel_backtrack);
+        helper = new ScoreDBHelper(getContext());
         loadSprites();
     } // end CannonView constructor
 
@@ -306,7 +314,13 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     public void onGameOver(boolean lost) {
         gameOver = true; // the game is over
         gameThread.stopGame(); // terminate thread
-        showGameOverDialog(R.string.lose); // show the losing dialog
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                namePromptDialog();
+            }
+        });
+
     }
 
     @Override
@@ -350,5 +364,26 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     public GameThread getGameThread()
     {
         return gameThread;
+    }
+
+
+    public void namePromptDialog()
+    {
+        final EditText nameInput = new EditText(getContext());
+        nameInput.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setView(nameInput);
+
+        builder.setMessage(R.string.namePromptText).
+                setTitle(R.string.namePromptTitle).
+                setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        helper.addRecord(nameInput.getText().toString(), score, new Date().toString());
+
+                        showGameOverDialog(R.string.lose); // show the losing dialog
+                    }
+                });
+        builder.show();
     }
 }
