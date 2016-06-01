@@ -10,7 +10,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
+import edu.noctrl.craig.generic.Downloader;
 
 public class MainActivity extends Activity {
 
@@ -57,6 +70,11 @@ public class MainActivity extends Activity {
             }
             case R.id.global_high_scores:
             {
+                try {
+                    globalScoresDialog(jetV);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 return true;
             }
             case R.id.about:
@@ -118,6 +136,79 @@ public class MainActivity extends Activity {
                 });
         builder.show();
     }
+
+    public void globalScoresDialog(final JetGameView jetV) throws IOException {
+        Downloader<JSONArray> downloader = new Downloader<JSONArray>(new Downloader.DownloadListener<JSONArray>() {
+            @Override
+            public JSONArray parseResponse(InputStream in) throws IOException, JSONException {
+                StringBuilder strBuild = new StringBuilder();
+                BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+                //read lines from input
+                String line = br.readLine();
+
+                while (line != null) {
+                    strBuild.append(line);
+                    line = br.readLine();
+                }
+                String result = strBuild.toString();
+                JSONArray obj = new JSONArray(result);
+
+                return obj;
+            }
+
+            @Override
+            public void handleResult(JSONArray result) throws JSONException {
+                ArrayList<JSONObject> objs = new ArrayList<JSONObject>();
+                try {
+                    JSONArray data = result;
+                    for (int i = 0; i < data.length(); i++)
+                    {
+                        objs.add((JSONObject) data.get(i));
+                    }
+
+                    Collections.sort(objs, new Comparator<JSONObject>() {
+                        @Override
+                        public int compare(JSONObject lhs, JSONObject rhs) {
+                            try {
+                                return rhs.getInt("score") - lhs.getInt("score");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            return 0;
+                        }
+                    });
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                String[] highScores = new String[Math.min(objs.size(), 5)];
+
+                for (int i = 0; i < highScores.length; i++){
+                    try {
+                        highScores[i] = "Name: " + objs.get(i).getString("name") + " Score: " + objs.get(i).getInt("score");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.
+                        setTitle(R.string.highScoreTitle).
+                        setItems(highScores, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                jetV.getGameThread().resumeGame();
+                            }
+                        });
+                builder.show();
+
+            }
+        });
+
+        downloader.execute("http://craiginsdev.com/highscore/scores.php?game=Deserted%20Space");
+
+    }
+
 } // end class MainActivity
 
 /*********************************************************************************

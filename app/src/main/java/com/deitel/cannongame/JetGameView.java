@@ -31,6 +31,7 @@ import edu.noctrl.craig.generic.SoundManager;
 import edu.noctrl.craig.generic.StageOne;
 import edu.noctrl.craig.generic.StageThree;
 import edu.noctrl.craig.generic.StageTwo;
+import edu.noctrl.craig.generic.WebHandler;
 import edu.noctrl.craig.generic.World;
 
 public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, World.StateListener {
@@ -54,7 +55,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     private int screenHeight;
 
     ScoreDBHelper helper;
-
+    WebHandler webHandler;
     //http://stackoverflow.com/questions/18973550/load-images-from-assets-folder
     private Bitmap getBitmapFromAsset(String strName)
     {
@@ -90,6 +91,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
         soundManager = new SoundManager(context);
         track = MediaPlayer.create(context, R.raw.spacecamel_backtrack);
         helper = new ScoreDBHelper(getContext());
+        webHandler = new WebHandler();
         loadSprites();
     } // end CannonView constructor
 
@@ -314,6 +316,7 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     public void onGameOver(boolean lost) {
         gameOver = true; // the game is over
         gameThread.stopGame(); // terminate thread
+        score += world.score;
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -326,9 +329,8 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     @Override
     public void onNextStage(boolean showDialog, int nextStage)
     {
-        score += world.score;
         gameThread.stopGame(); //stop game thread
-
+        score = world.score;
         //If stage was cleared, show win dialog
         if (showDialog)
             showGameStageWinDialog(R.string.win, nextStage);
@@ -339,9 +341,9 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
     @Override
     public void onWinGame(boolean won)
     {
-        score += world.score;
         gameOver=true;
         gameThread.stopGame();
+        score += world.score;
         showGameWinDialog(R.string.win);
     }
     public void setStage(SurfaceHolder holder, int stage)
@@ -379,8 +381,23 @@ public class JetGameView extends SurfaceView implements SurfaceHolder.Callback, 
                 setTitle(R.string.namePromptTitle).
                 setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
-                        helper.addRecord(nameInput.getText().toString(), score, new Date().toString());
+                        //Get timestamp
+                        final Date curDate = new Date();
+                        //Set local high scores
+                        helper.addRecord(nameInput.getText().toString(), world.score, curDate.toString());
 
+
+
+                        new Thread(new Runnable() {
+                            public void run() {
+                                //Set global high scores
+                                try {
+                                    webHandler.sendHighScore(nameInput.getText().toString(), world.score, curDate);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
                         showGameOverDialog(R.string.lose); // show the losing dialog
                     }
                 });

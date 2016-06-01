@@ -21,7 +21,7 @@ public class StageTwo extends World {
         cam2 = new SpaceCamel(this);
         cam2.position =  new Point3F(180, 100, 0);
         this.addObject(cam2);
-        ENEMIES_NEEDED = 1;
+        ENEMIES_NEEDED = 20;
     }
 
     @Override
